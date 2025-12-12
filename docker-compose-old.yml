@@ -1,0 +1,325 @@
+networks:
+  rtdip-network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/16
+
+services:
+  kafka:
+    container_name: rtdip-kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    image: apache/kafka:3.8.0
+    hostname: kafka
+    networks:
+      - rtdip-network
+    ports:
+      - 9092:9092
+      - 9093:9093
+      - 9094:9094
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+    environment:
+      # ---- ZOOKEEPER MODE ----
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
+      KAFKA_BROKER_ID: 1
+
+      # ---- LISTENERS ----
+      KAFKA_LISTENERS: "PLAINTEXT://0.0.0.0:9092,EXTERNAL://0.0.0.0:9094"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092,EXTERNAL://172.30.121.84:9094"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      # ---- GENERAL SETTINGS ----
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_DELETE_TOPIC_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 6
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+      # ---- TIMEOUT FIXES ----
+      KAFKA_REQUEST_TIMEOUT_MS: "15000"
+      KAFKA_REPLICA_SOCKET_TIMEOUT_MS: "15000"
+
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions.sh", "--bootstrap-server", "localhost:9092"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  minio:
+    command: server /data --console-address ":9001"
+    container_name: rtdip-minio
+    environment:
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost:9000/minio/health/live
+      timeout: 10s
+    hostname: minio
+    image: minio/minio:latest
+    networks:
+    - rtdip-network
+    ports:
+    - 9000:9000
+    - 9001:9001
+    restart: unless-stopped
+    volumes:
+    - minio-data:/data
+
+  minio-init:
+    container_name: rtdip-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint:
+    - /bin/sh
+    - -c
+    - |
+      sleep 5
+      mc alias set myminio http://minio:9000 $${MINIO_ROOT_USER:-minioadmin} $${MINIO_ROOT_PASSWORD:-minioadmin}
+      mc mb myminio/historian-data --ignore-existing
+      mc mb myminio/checkpoints --ignore-existing
+      mc mb myminio/metadata --ignore-existing
+      mc anonymous set download myminio/historian-data
+      echo 'MinIO buckets created successfully'
+      exit 0
+    image: minio/mc:latest
+    networks:
+    - rtdip-network
+    restart: on-failure
+
+  # OPC UA to Kafka Connector
+  opcua-connector:
+    container_name: rtdip-opcua-connector
+    depends_on:
+      kafka:
+        condition: service_healthy
+    build:
+      context: ./opcua-connector
+      dockerfile: Dockerfile
+    environment:
+      OPCUA_ENDPOINT: opc.tcp://172.30.121.17:48080/uOPC/
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_TOPIC: OPCUA
+      OPCUA_SECURITY_MODE: None
+      OPCUA_SECURITY_POLICY: None
+      POLLING_INTERVAL: 1000
+      LOG_LEVEL: INFO
+    networks:
+    - rtdip-network
+    restart: unless-stopped
+    volumes:
+    - ./opcua-connector/config:/app/config
+
+  # Spark Streaming Job to consume from Kafka and write to Delta Lake
+  spark-streaming:
+    container_name: rtdip-spark-streaming
+    depends_on:
+      spark-master:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      SPARK_MASTER_URL: spark://spark-master:7077
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_TOPIC: OPCUA
+      DELTA_LAKE_PATH: s3a://historian-data/
+      CHECKPOINT_LOCATION: s3a://checkpoints/opcua-streaming
+    image: apache/spark:3.5.1
+    user: root
+    entrypoint: ["/bin/bash", "/opt/spark/pipelines/start-spark.sh"]
+    networks:
+    - rtdip-network
+    restart: unless-stopped
+    volumes:
+    - ./pipelines:/opt/spark/pipelines
+    - spark-ivy-cache:/home/spark/.ivy2
+
+  rtdip-api:
+    container_name: rtdip-api
+    depends_on:
+    - spark-master
+    - minio
+    - kafka
+    environment:
+      API_PORT: 8000
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_S3_ENDPOINT: http://minio:9000
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      DELTA_LAKE_PATH: s3a://historian-data/
+      LOG_LEVEL: INFO
+      SPARK_MASTER_URL: spark://spark-master:7077
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      KAFKA_TOPIC: OPCUA
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost:80
+      timeout: 10s
+    hostname: rtdip-api
+    image: rtdip/api:latest
+    networks:
+    - rtdip-network
+    ports:
+    - 8000:80
+    restart: unless-stopped
+    volumes:
+    - ./api-config:/app/config
+  
+  custom-api:
+    container_name: rtdip-custom-api
+    build: ./custom_api
+    depends_on:
+      - spark-master
+      - minio
+    ports:
+      - "8001:80"
+    networks:
+      - rtdip-network
+
+  spark-master:
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    container_name: rtdip-spark-master
+    environment:
+      SPARK_DAEMON_MEMORY: 2g
+      SPARK_MASTER_HOST: spark-master
+      SPARK_MASTER_OPTS: -Dspark.hadoop.fs.s3a.endpoint=http://minio:9000 -Dspark.hadoop.fs.s3a.access.key=minioadmin
+        -Dspark.hadoop.fs.s3a.secret.key=minioadmin -Dspark.hadoop.fs.s3a.path.style.access=true
+        -Dspark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem -Dspark.hadoop.fs.s3a.connection.ssl.enabled=false
+      SPARK_MASTER_PORT: 7077
+      SPARK_MASTER_WEBUI_PORT: 8080
+      SPARK_MODE: master
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost:8080
+      timeout: 10s
+    hostname: spark-master
+    image: apache/spark:3.5.1
+    networks:
+    - rtdip-network
+    ports:
+    - 8080:8080
+    - 7077:7077
+    - 15002:15002
+    restart: unless-stopped
+    volumes:
+    - spark-data:/opt/spark/work-dir
+    - ./pipelines:/opt/spark/pipelines
+
+  spark-worker-1:
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    container_name: rtdip-spark-worker-1
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    environment:
+      SPARK_EXECUTOR_MEMORY: 3g
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
+      SPARK_WORKER_OPTS: -Dspark.hadoop.fs.s3a.endpoint=http://minio:9000 -Dspark.hadoop.fs.s3a.access.key=minioadmin
+        -Dspark.hadoop.fs.s3a.secret.key=minioadmin -Dspark.hadoop.fs.s3a.path.style.access=true
+        -Dspark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
+      SPARK_WORKER_WEBUI_PORT: 8081
+    hostname: spark-worker-1
+    image: apache/spark:3.5.1
+    networks:
+    - rtdip-network
+    ports:
+    - 8081:8081
+    restart: unless-stopped
+    volumes:
+    - ./pipelines:/opt/spark/pipelines
+
+  spark-worker-2:
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    container_name: rtdip-spark-worker-2
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    environment:
+      SPARK_EXECUTOR_MEMORY: 3g
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
+      SPARK_WORKER_OPTS: -Dspark.hadoop.fs.s3a.endpoint=http://minio:9000 -Dspark.hadoop.fs.s3a.access.key=minioadmin
+        -Dspark.hadoop.fs.s3a.secret.key=minioadmin -Dspark.hadoop.fs.s3a.path.style.access=true
+        -Dspark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
+      SPARK_WORKER_WEBUI_PORT: 8082
+    hostname: spark-worker-2
+    image: apache/spark:3.5.1
+    networks:
+    - rtdip-network
+    ports:
+    - 8082:8082
+    restart: unless-stopped
+    volumes:
+    - ./pipelines:/opt/spark/pipelines
+
+  zookeeper:
+    container_name: rtdip-zookeeper
+    environment:
+      JVMFLAGS: -Xmx512m -Xms512m
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_INIT_LIMIT: 10
+      ZOOKEEPER_SYNC_LIMIT: 5
+      ZOOKEEPER_TICK_TIME: 2000
+    healthcheck:
+      interval: 10s
+      retries: 3
+      test:
+      - CMD
+      - nc
+      - -z
+      - localhost
+      - '2181'
+      timeout: 5s
+    hostname: zookeeper
+    image: zookeeper:3.9
+    networks:
+    - rtdip-network
+    ports:
+    - 2181:2181
+    restart: unless-stopped
+    volumes:
+    - zookeeper-data:/data
+    - zookeeper-logs:/datalog
+
+volumes:
+  kafka-data:
+    driver: local
+  minio-data:
+    driver: local
+  spark-data:
+    driver: local
+  zookeeper-data:
+    driver: local
+  zookeeper-logs:
+    driver: local
+  spark-ivy-cache:
+    driver: local

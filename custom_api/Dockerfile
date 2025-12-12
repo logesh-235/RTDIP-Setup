@@ -1,0 +1,25 @@
+FROM apache/spark:3.5.1
+
+USER root
+
+# Install Python & dependencies
+RUN apt-get update && apt-get install -y python3-pip wget && \
+    pip install fastapi uvicorn pyspark pandas delta-spark==3.2.0
+
+# Add Delta and Hadoop AWS JARs
+RUN wget -O /opt/spark/jars/delta-spark_2.12-3.2.0.jar \
+        https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar && \
+    wget -O /opt/spark/jars/delta-storage-3.2.0.jar \
+        https://repo1.maven.org/maven2/io/delta/delta-storage/3.2.0/delta-storage-3.2.0.jar && \
+    wget -O /opt/spark/jars/hadoop-aws-3.3.4.jar \
+        https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar && \
+    wget -O /opt/spark/jars/aws-java-sdk-bundle-1.12.262.jar \
+        https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar
+
+# Copy application
+COPY app.py /opt/app/app.py
+WORKDIR /opt/app
+
+EXPOSE 80
+ENTRYPOINT ["python3", "app.py"]
+CMD ["python3", "app.py"]

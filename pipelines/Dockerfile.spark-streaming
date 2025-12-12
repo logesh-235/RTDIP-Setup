@@ -1,0 +1,9 @@
+
+FROM apache/spark:3.5.1
+
+USER root
+RUN apt-get update && apt-get install -y python3-pip && rm -rf /var/lib/apt/lists/*
+RUN pip3 install --no-cache-dir "rtdip-sdk[pipelines,pyspark]" "pyyaml" "bs4"
+
+# pipeline files will be mounted via volumes
+ENTRYPOINT ["/bin/bash", "/opt/spark/pipelines/start-spark.sh"]

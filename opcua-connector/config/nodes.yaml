@@ -1,0 +1,10 @@
+# OPC UA Nodes Configuration
+# Leave empty for auto-discovery or specify nodes:
+
+nodes:
+  # Example configurations (uncomment and modify):
+  # - node_id: "ns=2;s=Temperature"
+  #   name: "Temperature Sensor"
+  
+  # - node_id: "ns=2;s=Pressure"
+  #   name: "Pressure Sensor"

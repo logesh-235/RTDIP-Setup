@@ -1,0 +1,7 @@
+
+{
+  "nodes": [
+    { "node_id": "ns=2;s=Temperature", "display_name": "Temperature Sensor" },
+    { "node_id": "ns=2;s=Pressure",    "display_name": "Pressure Sensor" }
+  ]
+}

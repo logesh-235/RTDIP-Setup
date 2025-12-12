@@ -172,7 +172,9 @@ services:
       DELTA_PCDM_LATEST:  s3a://historian-data/pcdm/latest
       CHECKPOINT_EVENTS:  s3a://checkpoints/opcua-rtdip/events
       CHECKPOINT_LATEST:  s3a://checkpoints/opcua-rtdip/latest
-      KAFKA_STARTING_OFFSETS: earliest   # set "earliest" for a one-time backfill test
+      KAFKA_STARTING_OFFSETS: earliest   # set "earliest" for a one-time backfill test      
+      CHECKPOINT_SUFFIX: run7               # forces new query paths
+
     volumes:
       - ./pipelines:/opt/spark/pipelines
       - spark-ivy-cache:/home/spark/.ivy2

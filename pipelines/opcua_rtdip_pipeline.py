@@ -1,7 +1,7 @@
 
 # opcua_rtdip_pipeline.py
 # Kafka -> RTDIP PCDM (Events + Latest) -> Delta Lake on MinIO/S3A
-# Ensures EventDate exists; Events write is append-only; Latest keeps MERGE.
+# Fixed: EventDate partition column, robust EventTime, ValueType inference, append-only Events, MERGE Latest.
 
 import os
 import sys
@@ -10,7 +10,7 @@ import json
 import threading
 import logging
 from pyspark.sql.functions import (
-    col, to_timestamp, to_date, when, lit, get_json_object, current_timestamp
+    col, to_timestamp, to_date, when, lit, get_json_object, current_timestamp, expr
 )
 from pyspark.sql.types import StructType, StructField, StringType, TimestampType, DateType
 
@@ -38,11 +38,15 @@ log = logging.getLogger("opcua-rtdip-pipeline")
 # ----------------------------
 BOOTSTRAP = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "kafka:9092")
 TOPIC = os.getenv("KAFKA_TOPIC", "OPCUA")
-STARTING_OFFSETS = os.getenv("KAFKA_STARTING_OFFSETS", "latest")  # "latest" or "earliest"
+
+# "latest" for live-only, "earliest" for backfill (only honored for a NEW query / checkpoint)
+STARTING_OFFSETS = os.getenv("KAFKA_STARTING_OFFSETS", "latest")
+
 CHECKPOINT_EVENTS = os.getenv("CHECKPOINT_EVENTS", "s3a://checkpoints/opcua-rtdip/events")
 CHECKPOINT_LATEST = os.getenv("CHECKPOINT_LATEST", "s3a://checkpoints/opcua-rtdip/latest")
-CHECKPOINT_SUFFIX = os.getenv("CHECKPOINT_SUFFIX", "").strip()    # set to "runX" to force fresh query
+CHECKPOINT_SUFFIX = os.getenv("CHECKPOINT_SUFFIX", "").strip()  # e.g., "run6"
 
+# Delta target paths
 DELTA_FLOAT   = os.getenv("DELTA_PCDM_FLOAT",   "s3a://historian-data/pcdm/events_float")
 DELTA_STRING  = os.getenv("DELTA_PCDM_STRING",  "s3a://historian-data/pcdm/events_string")
 DELTA_INTEGER = os.getenv("DELTA_PCDM_INTEGER", "s3a://historian-data/pcdm/events_integer")
@@ -55,10 +59,13 @@ AWS_S3_ENDPOINT = os.getenv("AWS_S3_ENDPOINT", "http://minio:9000")
 AWS_ACCESS_KEY  = os.getenv("AWS_ACCESS_KEY_ID", "minioadmin")
 AWS_SECRET_KEY  = os.getenv("AWS_SECRET_ACCESS_KEY", "minioadmin")
 
-# Apply suffix to force a new query (new checkpoint path)
+# Apply suffix to force a new query (new checkpoint paths)
 if CHECKPOINT_SUFFIX:
     CHECKPOINT_EVENTS = CHECKPOINT_EVENTS.rstrip("/") + "_" + CHECKPOINT_SUFFIX
     CHECKPOINT_LATEST = CHECKPOINT_LATEST.rstrip("/") + "_" + CHECKPOINT_SUFFIX
+    # Optional: write Latest to a new path so you can compare runs cleanly
+    if DELTA_LATEST.endswith("/latest"):
+        DELTA_LATEST = DELTA_LATEST + "_" + CHECKPOINT_SUFFIX
 
 log.info("=== Stage 0: Environment ===")
 log.info(f"KAFKA_BOOTSTRAP_SERVERS={BOOTSTRAP}")
@@ -67,6 +74,8 @@ log.info(f"KAFKA_STARTING_OFFSETS={STARTING_OFFSETS}")
 log.info(f"CHECKPOINT_EVENTS={CHECKPOINT_EVENTS}")
 log.info(f"CHECKPOINT_LATEST={CHECKPOINT_LATEST}")
 log.info(f"DELTA_STRING={DELTA_STRING}")
+log.info(f"DELTA_FLOAT={DELTA_FLOAT}")
+log.info(f"DELTA_INTEGER={DELTA_INTEGER}")
 log.info(f"DELTA_LATEST={DELTA_LATEST}")
 
 # ----------------------------
@@ -112,7 +121,7 @@ try:
     hconf.set("fs.s3a.path.style.access", "true")
     hconf.set("fs.s3a.connection.ssl.enabled", "false")
     Path = jvm.org.apache.hadoop.fs.Path
-    for path in [CHECKPOINT_EVENTS, CHECKPOINT_LATEST, DELTA_STRING, DELTA_LATEST]:
+    for path in [CHECKPOINT_EVENTS, CHECKPOINT_LATEST, DELTA_STRING, DELTA_FLOAT, DELTA_INTEGER, DELTA_LATEST]:
         p = Path(path)
         fs = p.getFileSystem(hconf)
         try:
@@ -125,7 +134,7 @@ except Exception as e:
     log.warning("MinIO preflight overall failure (non-fatal): %s", e)
 
 # ----------------------------
-# Stage 2.5: Ensure Delta tables exist
+# Stage 2.5: Ensure Delta tables exist (partition & schemas)
 # ----------------------------
 log.info("=== Stage 2.5: Ensure Delta tables exist ===")
 
@@ -142,6 +151,7 @@ def ensure_delta_table(path: str, schema: StructType, partition_cols=None):
         writer.save(path)
         log.info("Delta table created at: %s", path)
 
+# Latest schema: let destination evolve, but initialize compatible columns
 latest_schema = StructType([
     StructField("TagName",       StringType(),    False),
     StructField("EventTime",     TimestampType(), True),
@@ -153,6 +163,7 @@ latest_schema = StructType([
     StructField("GoodValueType", StringType(),    True),
 ])
 
+# Events string schema (partitioned by EventDate)
 events_string_schema = StructType([
     StructField("EventDate", DateType(),     True),
     StructField("TagName",   StringType(),   False),
@@ -163,9 +174,10 @@ events_string_schema = StructType([
 
 ensure_delta_table(DELTA_LATEST, latest_schema)
 ensure_delta_table(DELTA_STRING, events_string_schema, ["EventDate"])
+# (Float/int tables will be created on first write)
 
 # ----------------------------
-# Stage 3: Kafka batch peek (non-blocking)
+# Stage 3: Kafka batch peek (non-blocking; visibility only)
 # ----------------------------
 log.info("=== Stage 3: Kafka batch sample (peek latest) ===")
 try:
@@ -193,7 +205,7 @@ src_df = SparkKafkaSource(
     options={
         "kafka.bootstrap.servers": BOOTSTRAP,
         "subscribe": TOPIC,
-        "startingOffsets": STARTING_OFFSETS,   # "latest" for live-only, "earliest" for backfill
+        "startingOffsets": STARTING_OFFSETS,   # "latest" or "earliest"
         "failOnDataLoss": "false",
         "includeHeaders": "true",
         "maxOffsetsPerTrigger": MAX_OFFSETS,
@@ -212,33 +224,45 @@ log.info("json_df schema:")
 json_df.printSchema()
 
 # ----------------------------
-# Stage 6: Parse JSON + Build PCDM events_df
+# Stage 6: Parse JSON + Build PCDM events_df (with ValueType inference)
 # ----------------------------
 log.info("=== Stage 6: Parse JSON + Build PCDM events_df ===")
-parsed = json_df.select(
+
+# Keep 'json' for type inference; extract standard fields
+parsed_base = json_df.select(
+    "json",
     get_json_object(col("json"), "$.display_name").alias("TagName"),
     get_json_object(col("json"), "$.value").alias("ValueStr"),            # arrays/scalars as JSON string
     get_json_object(col("json"), "$.timestamp").alias("IngestTimeStr"),
     get_json_object(col("json"), "$.source_timestamp").alias("SourceTimeStr"),
-    get_json_object(col("json"), "$.quality").alias("Quality"),           # optional
+    get_json_object(col("json"), "$.quality").alias("Quality"),
 )
 
 event_time  = to_timestamp(col("SourceTimeStr"), "yyyy-MM-dd'T'HH:mm:ss[.SSSSSS]XXX")
 ingest_time = to_timestamp(col("IngestTimeStr"), "yyyy-MM-dd'T'HH:mm:ss[.SSSSSS]")
 
-parsed = parsed.withColumn(
+parsed = parsed_base.withColumn(
     "EventTime",
     when(event_time.isNotNull(), event_time)
     .otherwise(when(ingest_time.isNotNull(), ingest_time).otherwise(current_timestamp()))
 )
 
+# ValueType inference for Latest routing (float/integer/string):
+is_integer = expr("try_cast(get_json_object(json, '$.value') AS long) IS NOT NULL")
+is_float   = expr("try_cast(get_json_object(json, '$.value') AS double) IS NOT NULL")
+
 events_df = (
     parsed
     .withColumn("Status", when(col("Quality").isNotNull(), col("Quality")).otherwise(lit("Good")))
-    .withColumn("Value", col("ValueStr"))
-    .withColumn("ValueType", lit("string"))      # required by Latest sink
-    .withColumn("ChangeType", lit("upsert"))     # required by Events sink
-    .withColumn("EventDate", to_date(col("EventTime")))  # <-- ensure partition column exists
+    .withColumn("Value", col("ValueStr"))  # keep as string; numeric analytics can cast when reading
+    .withColumn(
+        "ValueType",
+        when(is_integer, lit("integer"))
+        .when(is_float,   lit("float"))
+        .otherwise(lit("string"))
+    )
+    .withColumn("ChangeType", lit("upsert"))         # required by Events sink
+    .withColumn("EventDate", to_date(col("EventTime")))  # required partition column for events_string
     .select("EventDate", "TagName", "EventTime", "Status", "Value", "ValueType", "ChangeType")
 )
 
@@ -246,7 +270,7 @@ log.info("events_df schema:")
 events_df.printSchema()
 
 # ----------------------------
-# Stage 7: PCDM Events -> Delta (append-only)
+# Stage 7: PCDM Events -> Delta (append-only, no MERGE)
 # ----------------------------
 log.info("=== Stage 7: Start PCDM Events stream -> Delta (append-only) ===")
 events_query = SparkPCDMToDeltaDestination(
@@ -265,18 +289,18 @@ events_query = SparkPCDMToDeltaDestination(
 ).write_stream()
 
 # ----------------------------
-# Stage 8: PCDM Latest -> Delta (merge)
+# Stage 8: PCDM Latest -> Delta (MERGE)
 # ----------------------------
-log.info("=== Stage 8: Start PCDM Latest stream -> Delta ===")
+log.info("=== Stage 8: Start PCDM Latest stream -> Delta (MERGE) ===")
 latest_query = SparkPCDMLatestToDeltaDestination(
     spark=spark,
-    data=events_df,
+    data=events_df.select("TagName", "EventTime", "Status", "Value", "ValueType"),  # columns expected by Latest
     options={"checkpointLocation": CHECKPOINT_LATEST},
     destination=DELTA_LATEST,
     mode="append",
     trigger="10 seconds",
     query_name="OPCUA_PCDM_LATEST",
-    query_wait_interval=10,
+    query_wait_interval=10,  # emits progress logs periodically
 ).write_stream()
 
 # ----------------------------

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Dec 12 17:44:27 IST 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-019b-127b-d2da-000003acf9d8 
+on database directory /home/utthunga/impl-rtdip/rtdip-setup/metastore_db with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5ffd2b27 
+Loaded from file:/home/utthunga/.local/lib/python3.10/site-packages/pyspark/jars/derby-10.14.2.0.jar
+java.vendor=Ubuntu
+java.runtime.version=11.0.29+7-post-Ubuntu-1ubuntu122.04
+user.dir=/home/utthunga/impl-rtdip/rtdip-setup
+os.name=Linux
+os.arch=amd64
+os.version=6.8.0-87-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

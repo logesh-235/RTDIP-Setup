@@ -253,7 +253,7 @@ is_float   = expr("try_cast(get_json_object(json, '$.value') AS double) IS NOT N
 
 events_df = (
     parsed
-    .withColumn("Status", when(col("Quality").isNotNull(), col("Quality")).otherwise(lit("Good")))
+    .withColumn("Status", when(col("Quality").isNotNull(), col("Quality")).otherwise(lit("None")))
     .withColumn("Value", col("ValueStr"))  # keep as string; numeric analytics can cast when reading
     .withColumn(
         "ValueType",

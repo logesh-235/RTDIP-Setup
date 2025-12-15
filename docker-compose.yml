@@ -323,6 +323,40 @@ services:
       - zookeeper-data:/data
       - zookeeper-logs:/datalog
 
+
+
+  rtdip-query-api:
+    build:
+      context: ./onprem-rtdip-api
+      dockerfile: Dockerfile
+    container_name: rtdip-query-api
+    depends_on:
+      spark-master:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    environment:
+      # Spark Connect to your master
+      #SPARK_REMOTE: sc://spark-master:15002
+      SPARK_MASTER_URL: spark://spark-master:7077   # regular standalone master
+      # MinIO (S3A) creds
+      AWS_ACCESS_KEY_ID: minioadmin
+      AWS_SECRET_ACCESS_KEY: minioadmin
+      S3_ENDPOINT: http://minio:9000
+
+      # Delta table paths (match your streaming setup)
+      DELTA_PCDM_EVENTS_STRING: s3a://historian-data/pcdm/events_string
+      DELTA_PCDM_EVENTS_INTEGER: s3a://historian-data/pcdm/events_integer
+      DELTA_PCDM_EVENTS_FLOAT:   s3a://historian-data/pcdm/events_float
+      #Default TImezone
+      DEFAULT_TZ_OFFSET : "+00:00"
+    networks:
+      - rtdip-network
+    ports:
+      - "8002:80"
+    restart: unless-stopped
+
+
 volumes:
   kafka-data:
     driver: local

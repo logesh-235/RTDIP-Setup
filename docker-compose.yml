@@ -109,7 +109,7 @@ services:
       # OPCUA_PASSWORD: "pass"
 
       KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"   # in-cluster address
-      KAFKA_TOPIC: "OPCUA"
+      KAFKA_TOPIC: "OPCUA_LIVE"
 
       SUBSCRIPTION_PERIOD_MS: "1000"
       OPCUA_CLIENT_TIMEOUT_SEC: "30.0"
@@ -122,7 +122,7 @@ services:
       # MAX_DISCOVER_NODES: "1000"
 
       KAFKA_TOPIC_EVENTS: "OPCUA_EVENTS"
-      LOG_LEVEL: "INFO"
+      LOG_LEVEL: "DEBUG"
 
       # subscription tuning
       #SUBSCRIPTION_PERIOD_MS: "500"        # publish period per subscription
@@ -160,20 +160,24 @@ services:
     environment:
       SPARK_MASTER_URL: spark://spark-master:7077
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      KAFKA_TOPIC: OPCUA
+      KAFKA_TOPIC: OPCUA_LIVE
       AWS_S3_ENDPOINT: http://minio:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
       MAX_OFFSETS_PER_TRIGGER: "200000"
       SPARK_SHUFFLE_PARTITIONS: "200"
-      DELTA_PCDM_FLOAT:   s3a://historian-data/pcdm/events_float
-      DELTA_PCDM_STRING:  s3a://historian-data/pcdm/events_string
-      DELTA_PCDM_INTEGER: s3a://historian-data/pcdm/events_integer
-      DELTA_PCDM_LATEST:  s3a://historian-data/pcdm/latest
+      #DELTA_PCDM_FLOAT:   s3a://historian-data/pcdm/events_float
+      #DELTA_PCDM_STRING:  s3a://historian-data/pcdm/events_string
+      #DELTA_PCDM_INTEGER: s3a://historian-data/pcdm/events_integer
+      #DELTA_PCDM_LATEST:  s3a://historian-data/pcdm/latest
+      DELTA_PCDM_INTEGER_YMDH: s3a://rtdip/pcdm/events_integer
+      DELTA_PCDM_FLOAT_YMDH:   s3a://rtdip/pcdm/events_float
+      DELTA_PCDM_STRING_YMDH:  s3a://rtdip/pcdm/events_string
+      DELTA_PCDM_LATEST:       s3a://rtdip/pcdm/latest
       CHECKPOINT_EVENTS:  s3a://checkpoints/opcua-rtdip/events
       CHECKPOINT_LATEST:  s3a://checkpoints/opcua-rtdip/latest
-      KAFKA_STARTING_OFFSETS: earliest   # set "earliest" for a one-time backfill test      
-      CHECKPOINT_SUFFIX: run7               # forces new query paths
+      KAFKA_STARTING_OFFSETS: latest   # set "earliest" for a one-time backfill test      
+      CHECKPOINT_SUFFIX: ""               # forces new query paths
 
     volumes:
       - ./pipelines:/opt/spark/pipelines
@@ -195,7 +199,7 @@ services:
       LOG_LEVEL: INFO
       SPARK_MASTER_URL: spark://spark-master:7077
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
-      KAFKA_TOPIC: OPCUA
+      KAFKA_TOPIC: OPCUA_LIVE
     healthcheck:
       interval: 30s
       retries: 3

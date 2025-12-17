@@ -1,65 +1,101 @@
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
-from rtdip_sdk.pipelines.sources.spark.kafka import SparkKafkaSource
+"""
+Single-file OPC UA client script
+- Connects to OPC UA server
+- Prints namespaces
+- Browses full node tree from Objects
+- Reads values from Variable nodes
+- Stores full output into a TXT file
 
-# ------------------------------
-# 1️⃣ Create Spark Session with MinIO Configurations
-# ------------------------------
-spark = SparkSession.builder \
-    .appName("RTDIP Kafka to MinIO Example") \
-    .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1") \
-    .config("spark.hadoop.fs.s3a.access.key", "your-access-key") \
-    .config("spark.hadoop.fs.s3a.secret.key", "your-secret-key") \
-    .config("spark.hadoop.fs.s3a.endpoint", "http://localhost:9000")  # MinIO URL
-    .config("spark.hadoop.fs.s3a.connection.maximum", "100")  # Max connections
-    .config("spark.hadoop.fs.s3a.path.style.access", "true")  # MinIO S3 compatibility
-    .getOrCreate()
+Endpoint used:
+    opc.tcp://172.30.2.55:48080/uOPC/
 
-# Set log level to show only warnings or higher
-spark.sparkContext.setLogLevel("WARN")
+Requirements:
+    pip install opcua
+"""
 
-# ------------------------------
-# 2️⃣ Kafka Options
-# ------------------------------
-kafka_options = {
-    "kafka.bootstrap.servers": "localhost:9092",  # Change to your Kafka server
-    "subscribe": "OPCUA",  # Change to your Kafka topic
-    "startingOffsets": "earliest"
-}
+from opcua import Client, ua
+import sys
+from datetime import datetime
 
-# ------------------------------
-# 3️⃣ Create RTDIP Kafka Source
-# ------------------------------
-kafka_source = SparkKafkaSource(spark=spark, options=kafka_options)
+OPC_ENDPOINT = "opc.tcp://172.30.2.55:48080/uOPC/"
+OUTPUT_FILE = f"opcua_output_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 
-# ------------------------------
-# 4️⃣ Read Stream from Kafka
-# ------------------------------
-df_stream = kafka_source.read_stream()
 
-# Kafka messages are in 'key' and 'value' columns as binary
-# Convert 'value' to string
-df_stream = df_stream.withColumn("value_str", col("value").cast("string"))
+def browse_node(node, file, level=0, max_depth=10):
+    """Recursively browse OPC UA nodes and write output to file"""
+    if level > max_depth:
+        return
 
-# Optional: show timestamp, key, and value
-df_stream = df_stream.select(
-    col("timestamp"),
-    col("key").cast("string").alias("key_str"),
-    col("value_str")
-)
+    try:
+        node_class = node.get_node_class()
+        browse_name = node.get_browse_name()
+        display_name = node.get_display_name().Text
 
-# ------------------------------
-# 5️⃣ Write to MinIO (S3-compatible storage)
-# ------------------------------
-# Specify MinIO bucket and path
-output_path = "s3a://your-bucket-name/path/to/store/data/"
+        indent = "  " * level
+        file.write(f"{indent}- {browse_name} | {node_class.name}\n")
 
-# Write the DataFrame to MinIO in Parquet format (can change to CSV, JSON, etc.)
-df_stream.writeStream \
-    .format("parquet") \
-    .option("path", output_path) \
-    .option("checkpointLocation", "/tmp/spark-checkpoint") \
-    .start()
+        # If this is a Variable, try reading its value
+        if node_class == ua.NodeClass.Variable:
+            try:
+                dv = node.get_data_value()
+                value = dv.Value.Value
+                dtype = dv.Value.VariantType
+                status = dv.StatusCode
+                ts = dv.SourceTimestamp
 
-# Wait for the query to terminate
-df_stream.awaitTermination()
+                file.write(f"{indent}    Value      : {value}\n")
+                file.write(f"{indent}    DataType   : {dtype}\n")
+                file.write(f"{indent}    StatusCode : {status}\n")
+                file.write(f"{indent}    Timestamp  : {ts}\n")
+            except Exception as e:
+                file.write(f"{indent}    [Value read failed: {e}]\n")
+
+        # Browse children
+        for child in node.get_children():
+            browse_node(child, file, level + 1, max_depth)
+
+    except Exception as e:
+        file.write(f"{'  ' * level}[Browse failed: {e}]\n")
+
+
+def main():
+    print("Connecting to OPC UA server...")
+    client = Client(OPC_ENDPOINT)
+
+    try:
+        client.connect()
+        print("Connected successfully")
+
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
+            file.write("OPC UA SERVER BROWSE OUTPUT\n")
+            file.write(f"Endpoint : {OPC_ENDPOINT}\n")
+            file.write(f"Generated: {datetime.now()}\n\n")
+
+            # Write namespaces
+            file.write("Namespaces:\n")
+            namespaces = client.get_namespace_array()
+            for idx, ns in enumerate(namespaces):
+                file.write(f"  ns={idx} -> {ns}\n")
+
+            file.write("\nBrowsing OPC UA Address Space:\n\n")
+
+            # Start browsing from Objects node
+            objects = client.get_objects_node()
+            browse_node(objects, file)
+
+        print(f"Output successfully written to: {OUTPUT_FILE}")
+
+    except KeyboardInterrupt:
+        print("Interrupted by user")
+
+    except Exception as e:
+        print("Error:", e)
+
+    finally:
+        print("Disconnecting...")
+        client.disconnect()
+        print("Disconnected")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,2645 @@
+OPC UA SERVER BROWSE OUTPUT
+Endpoint : opc.tcp://172.30.2.55:48080/uOPC/
+Generated: 2025-12-16 11:45:29.633839
+
+Namespaces:
+  ns=0 -> http://opcfoundation.org/UA/
+  ns=1 -> urn:uOPCSuite
+  ns=2 -> uOPCUAServer
+  ns=3 -> uOPCUAServer/DNP3
+  ns=4 -> uOPCUAServer/BacNet
+  ns=5 -> uOPCUAServer/Redundancy
+  ns=6 -> http://opcfoundation.org/UA/Diagnostics
+  ns=7 -> Opc.Ua.NamespaceTable
+
+Browsing OPC UA Address Space:
+
+- QualifiedName(0:Objects) | Object
+  - QualifiedName(4:BacNet) | Object
+  - QualifiedName(5:Redundancy) | Object
+    - QualifiedName(5:Redundancy.Mode) | Variable
+        Value      : None
+        DataType   : VariantType.Null
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.012381
+    - QualifiedName(5:Redundancy.Active) | Variable
+        Value      : None
+        DataType   : VariantType.Null
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.016353
+  - QualifiedName(2:Modbus) | Object
+    - QualifiedName(2:PLC_S7_200_SMART) | Object
+      - QualifiedName(2:PLC_S7_200_SMART.Compressor) | Object
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics) | Object
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.DeviceStatus) | Variable
+              Value      : Online
+              DataType   : VariantType.String
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:14:50.200000
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.CommFailures) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.ErrorResponses) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.ExpectedResponses) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.LastResponseTime) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.LateData) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.MsgResent) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.MsgSent) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.MsgTotal) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.PercentageReturn) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.PercentageValid) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.Reset) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.RespBadCheckSum) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.RespTimeouts) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.RespTruncated) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.TotalResponses) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.SuccessfulReads) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.SuccessfulWrites) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.FailedReads) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.FailedWrites) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.ActiveTagCount) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.AutoDemoted) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.AutoDemotionEnabled) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.Error) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+          - QualifiedName(2:PLC_S7_200_SMART.Compressor.Diagnostics.Enabled) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 01:04:50.442052
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Air_run_time) | Variable
+            Value      : 221
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Fan_Current_A) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Fan_Current_B) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Fan_Current_C) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Freq) | Variable
+            Value      : 4
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:08:00.334000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Grease_run_time) | Variable
+            Value      : 221
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Lube_run_time) | Variable
+            Value      : 221
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Current) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Current_ A) | Variable
+            Value      : 0.0
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:10:12.382000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Current_ B) | Variable
+            Value      : 0.0
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:10:12.382000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Current_ C) | Variable
+            Value      : 0.0
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:10:12.382000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Power) | Variable
+            Value      : 235.4600067138672
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:14:41.603000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Speed) | Variable
+            Value      : 50
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:08:00.334000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_this_elec) | Variable
+            Value      : 0.699999988079071
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:07:13.259000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_total_elec) | Variable
+            Value      : 66.33999633789062
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:09:35.927000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Motor_Voltage) | Variable
+            Value      : 240
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:08:00.334000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_OA_run_time) | Variable
+            Value      : 221
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Oil_run_time) | Variable
+            Value      : 221
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Pf_fan_phase_UI) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:09:31.871000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Pf_fan_this_elec) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Pf_total_elec) | Variable
+            Value      : 1.7999999523162842
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 05:11:55.221000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Pressure) | Variable
+            Value      : 8.899999618530273
+            DataType   : VariantType.Float
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:14:49.686000
+        - QualifiedName(2:PLC_S7_200_SMART.Compressor.Comp_Supply_Voltage) | Variable
+            Value      : 402
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:14:51.707000
+  - QualifiedName(0:Locations) | Object
+  - QualifiedName(0:Server) | Object
+    - QualifiedName(0:ServerArray) | Variable
+        Value      : ['urn:uOPCSuite']
+        DataType   : VariantType.String
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.260961
+    - QualifiedName(0:NamespaceArray) | Variable
+        Value      : ['http://opcfoundation.org/UA/', 'urn:uOPCSuite', 'uOPCUAServer', 'uOPCUAServer/DNP3', 'uOPCUAServer/BacNet', 'uOPCUAServer/Redundancy', 'http://opcfoundation.org/UA/Diagnostics', 'Opc.Ua.NamespaceTable']
+        DataType   : VariantType.String
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-26 10:06:12.303282
+    - QualifiedName(0:UrisVersion) | Variable
+        Value      : 0
+        DataType   : VariantType.UInt32
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.274051
+    - QualifiedName(0:ServerStatus) | Variable
+        Value      : ServerStatusDataType(StartTime:{self.StartTime}, CurrentTime:{self.CurrentTime}, State:{self.State}, BuildInfo:{self.BuildInfo}, SecondsTillShutdown:{self.SecondsTillShutdown}, ShutdownReason:{self.ShutdownReason})
+        DataType   : VariantType.ExtensionObject
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-12-16 06:14:52.729313
+      - QualifiedName(0:StartTime) | Variable
+          Value      : 2025-11-26 10:06:08.160370
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-01 08:58:51.890053
+      - QualifiedName(0:CurrentTime) | Variable
+          Value      : 2025-12-16 06:14:52.783427
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-01 08:58:51.890570
+      - QualifiedName(0:State) | Variable
+          Value      : 0
+          DataType   : VariantType.Int32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:17.384577
+      - QualifiedName(0:BuildInfo) | Variable
+          Value      : BuildInfo(ProductUri:{self.ProductUri}, ManufacturerName:{self.ManufacturerName}, ProductName:{self.ProductName}, SoftwareVersion:{self.SoftwareVersion}, BuildNumber:{self.BuildNumber}, BuildDate:{self.BuildDate})
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-16 06:08:58.981484
+        - QualifiedName(0:ProductUri) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-01 08:58:51.788370
+        - QualifiedName(0:ManufacturerName) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-01 08:58:51.788980
+        - QualifiedName(0:ProductName) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-16 06:08:59.064878
+        - QualifiedName(0:SoftwareVersion) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-01 08:58:51.789230
+        - QualifiedName(0:BuildNumber) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-01 08:58:51.789479
+        - QualifiedName(0:BuildDate) | Variable
+            Value      : 1601-01-01 00:00:00
+            DataType   : VariantType.DateTime
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-01 08:58:51.789712
+      - QualifiedName(0:SecondsTillShutdown) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-10 06:51:07.088433
+      - QualifiedName(0:ShutdownReason) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-10 06:51:07.088991
+    - QualifiedName(0:ServiceLevel) | Variable
+        Value      : 255
+        DataType   : VariantType.Byte
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.285984
+    - QualifiedName(0:EstimatedReturnTime) | Variable
+        Value      : 1601-01-01 00:00:00
+        DataType   : VariantType.DateTime
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.289938
+    - QualifiedName(0:LocalTime) | Variable
+        Value      : None
+        DataType   : VariantType.Null
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:24.294908
+    - QualifiedName(0:ServerCapabilities) | Object
+      - QualifiedName(0:ServerProfileArray) | Variable
+          Value      : ['http://opcfoundation.org/UA-Profile/Server/StandardUA2017']
+          DataType   : VariantType.String
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.298903
+      - QualifiedName(0:LocaleIdArray) | Variable
+          Value      : ['en-US']
+          DataType   : VariantType.String
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.302904
+      - QualifiedName(0:MinSupportedSampleRate) | Variable
+          Value      : 0.0
+          DataType   : VariantType.Double
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303595
+      - QualifiedName(0:MaxBrowseContinuationPoints) | Variable
+          Value      : 10
+          DataType   : VariantType.UInt16
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303585
+      - QualifiedName(0:MaxQueryContinuationPoints) | Variable
+          Value      : 10
+          DataType   : VariantType.UInt16
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303593
+      - QualifiedName(0:MaxHistoryContinuationPoints) | Variable
+          Value      : 100
+          DataType   : VariantType.UInt16
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303591
+      - QualifiedName(0:SoftwareCertificates) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.326938
+      - QualifiedName(0:MaxArrayLength) | Variable
+          Value      : 65535
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303580
+      - QualifiedName(0:MaxStringLength) | Variable
+          Value      : 65535
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303594
+      - QualifiedName(0:MaxByteStringLength) | Variable
+          Value      : 1048576
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-26 10:06:12.303589
+      - QualifiedName(0:OperationLimits) | Object
+      - QualifiedName(0:ModellingRules) | Object
+      - QualifiedName(0:AggregateFunctions) | Object
+        - QualifiedName(0:Interpolative) | Object
+        - QualifiedName(0:Average) | Object
+        - QualifiedName(0:TimeAverage) | Object
+        - QualifiedName(0:TimeAverage2) | Object
+        - QualifiedName(0:Total) | Object
+        - QualifiedName(0:Total2) | Object
+        - QualifiedName(0:Minimum) | Object
+        - QualifiedName(0:Maximum) | Object
+        - QualifiedName(0:MinimumActualTime) | Object
+        - QualifiedName(0:MaximumActualTime) | Object
+        - QualifiedName(0:Range) | Object
+        - QualifiedName(0:Minimum2) | Object
+        - QualifiedName(0:Maximum2) | Object
+        - QualifiedName(0:MinimumActualTime2) | Object
+        - QualifiedName(0:MaximumActualTime2) | Object
+        - QualifiedName(0:Range2) | Object
+        - QualifiedName(0:Count) | Object
+        - QualifiedName(0:AnnotationCount) | Object
+        - QualifiedName(0:DurationInStateZero) | Object
+        - QualifiedName(0:DurationInStateNonZero) | Object
+        - QualifiedName(0:NumberOfTransitions) | Object
+        - QualifiedName(0:Start) | Object
+        - QualifiedName(0:End) | Object
+        - QualifiedName(0:Delta) | Object
+        - QualifiedName(0:StartBound) | Object
+        - QualifiedName(0:EndBound) | Object
+        - QualifiedName(0:DeltaBounds) | Object
+        - QualifiedName(0:DurationGood) | Object
+        - QualifiedName(0:DurationBad) | Object
+        - QualifiedName(0:PercentGood) | Object
+        - QualifiedName(0:PercentBad) | Object
+        - QualifiedName(0:WorstQuality) | Object
+        - QualifiedName(0:WorstQuality2) | Object
+        - QualifiedName(0:StandardDeviationPopulation) | Object
+        - QualifiedName(0:VariancePopulation) | Object
+        - QualifiedName(0:StandardDeviationSample) | Object
+        - QualifiedName(0:VarianceSample) | Object
+      - QualifiedName(0:RoleSet) | Object
+        - QualifiedName(0:AddRole) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:34.006216
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:34.014304
+        - QualifiedName(0:RemoveRole) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:34.023523
+        - QualifiedName(0:Anonymous) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.346883
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.351912
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.356920
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.360920
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.365884
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.068803
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.075891
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.085129
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.094079
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.101902
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.111249
+        - QualifiedName(0:AuthenticatedUser) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.373378
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.420121
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.426033
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.432081
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.437837
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.442871
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.167924
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.180333
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.195365
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.216403
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.242706
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.269566
+        - QualifiedName(0:Observer) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.447951
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.452841
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.457947
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.507030
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.511964
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.517045
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.443533
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.453205
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.461512
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.469212
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.477533
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.488238
+        - QualifiedName(0:Operator) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.522036
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.526963
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.531946
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.536918
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.542028
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.547005
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.588090
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.595341
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.604948
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.612331
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.620796
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.628071
+        - QualifiedName(0:Engineer) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.551971
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.556943
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.561932
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.566914
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.570663
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.574540
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.689943
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.697886
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.705065
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.718691
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.727109
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.736866
+        - QualifiedName(0:Supervisor) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.579897
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.584901
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.590007
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.594865
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.599846
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.604987
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.792339
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.799622
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.807945
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.816297
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.823969
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.831952
+        - QualifiedName(0:ConfigureAdmin) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.609922
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.615055
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.621187
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.626921
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.631988
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.636969
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.884425
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.893608
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.902410
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.908957
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.917988
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.927693
+        - QualifiedName(0:SecurityAdmin) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.641885
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.646964
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.652098
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.657915
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.662829
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.668380
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.985004
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:34.998462
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.022696
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.372256
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.424380
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.433941
+        - QualifiedName(0:SecurityKeyServerAdmin) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.673972
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.678942
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.684270
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.688933
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.693900
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.698862
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.500173
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.510441
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.517894
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.524825
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.531223
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.540006
+        - QualifiedName(0:SecurityKeyServerAccess) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.703848
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.708917
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.713874
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.718919
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.723806
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.728830
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.651835
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.661174
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.670263
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.677136
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.685198
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.694220
+        - QualifiedName(0:SecurityKeyServerPush) | Object
+          - QualifiedName(0:Identities) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.734044
+          - QualifiedName(0:ApplicationsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.737974
+          - QualifiedName(0:Applications) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.742944
+          - QualifiedName(0:EndpointsExclude) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.747924
+          - QualifiedName(0:Endpoints) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.752923
+          - QualifiedName(0:CustomConfiguration) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.757938
+          - QualifiedName(0:AddIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.759626
+          - QualifiedName(0:RemoveIdentity) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.768201
+          - QualifiedName(0:AddApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.776620
+          - QualifiedName(0:RemoveApplication) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.785265
+          - QualifiedName(0:AddEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.792632
+          - QualifiedName(0:RemoveEndpoint) | Method
+            - QualifiedName(0:InputArguments) | Variable
+                Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-08 07:22:35.800503
+      - QualifiedName(0:MaxSessions) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.762948
+      - QualifiedName(0:MaxSubscriptions) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.767928
+      - QualifiedName(0:MaxMonitoredItems) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.772944
+      - QualifiedName(0:MaxSubscriptionsPerSession) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.777950
+      - QualifiedName(0:MaxMonitoredItemsPerSubscription) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.782955
+      - QualifiedName(0:MaxSelectClauseParameters) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.787960
+      - QualifiedName(0:MaxWhereClauseParameters) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.792897
+      - QualifiedName(0:MaxMonitoredItemsQueueSize) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.797853
+      - QualifiedName(0:ConformanceUnits) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.802886
+      - QualifiedName(0:HistoryServerCapabilities) | Object
+        - QualifiedName(0:AccessHistoryDataCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.807891
+        - QualifiedName(0:AccessHistoryEventsCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.812913
+        - QualifiedName(0:MaxReturnDataValues) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.817978
+        - QualifiedName(0:MaxReturnEventValues) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.822960
+        - QualifiedName(0:InsertDataCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.828022
+        - QualifiedName(0:ReplaceDataCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.833113
+        - QualifiedName(0:UpdateDataCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.839136
+        - QualifiedName(0:DeleteRawCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.844901
+        - QualifiedName(0:DeleteAtTimeCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.849890
+        - QualifiedName(0:InsertEventCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.854952
+        - QualifiedName(0:ReplaceEventCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.859858
+        - QualifiedName(0:UpdateEventCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.864878
+        - QualifiedName(0:DeleteEventCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.869905
+        - QualifiedName(0:InsertAnnotationCapability) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.874999
+        - QualifiedName(0:AggregateFunctions) | Object
+          - QualifiedName(0:Interpolative) | Object
+          - QualifiedName(0:Average) | Object
+          - QualifiedName(0:TimeAverage) | Object
+          - QualifiedName(0:TimeAverage2) | Object
+          - QualifiedName(0:Total) | Object
+          - QualifiedName(0:Total2) | Object
+          - QualifiedName(0:Minimum) | Object
+          - QualifiedName(0:Maximum) | Object
+          - QualifiedName(0:MinimumActualTime) | Object
+          - QualifiedName(0:MaximumActualTime) | Object
+          - QualifiedName(0:Range) | Object
+          - QualifiedName(0:Minimum2) | Object
+          - QualifiedName(0:Maximum2) | Object
+          - QualifiedName(0:MinimumActualTime2) | Object
+          - QualifiedName(0:MaximumActualTime2) | Object
+          - QualifiedName(0:Range2) | Object
+          - QualifiedName(0:Count) | Object
+          - QualifiedName(0:AnnotationCount) | Object
+          - QualifiedName(0:DurationInStateZero) | Object
+          - QualifiedName(0:DurationInStateNonZero) | Object
+          - QualifiedName(0:NumberOfTransitions) | Object
+          - QualifiedName(0:Start) | Object
+          - QualifiedName(0:End) | Object
+          - QualifiedName(0:Delta) | Object
+          - QualifiedName(0:StartBound) | Object
+          - QualifiedName(0:EndBound) | Object
+          - QualifiedName(0:DeltaBounds) | Object
+          - QualifiedName(0:DurationGood) | Object
+          - QualifiedName(0:DurationBad) | Object
+          - QualifiedName(0:PercentGood) | Object
+          - QualifiedName(0:PercentBad) | Object
+          - QualifiedName(0:WorstQuality) | Object
+          - QualifiedName(0:WorstQuality2) | Object
+          - QualifiedName(0:StandardDeviationPopulation) | Object
+          - QualifiedName(0:VariancePopulation) | Object
+          - QualifiedName(0:StandardDeviationSample) | Object
+          - QualifiedName(0:VarianceSample) | Object
+        - QualifiedName(0:ServerTimestampSupported) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.879890
+    - QualifiedName(0:ServerDiagnostics) | Object
+      - QualifiedName(0:SessionsDiagnosticsSummary) | Object
+        - QualifiedName(0:Pure Python Client Session1) | Object
+          - QualifiedName(0:SessionDiagnostics) | Variable
+              Value      : SessionDiagnosticsDataType(SessionId:{self.SessionId}, SessionName:{self.SessionName}, ClientDescription:{self.ClientDescription}, ServerUri:{self.ServerUri}, EndpointUrl:{self.EndpointUrl}, LocaleIds:{self.LocaleIds}, ActualSessionTimeout:{self.ActualSessionTimeout}, MaxResponseMessageSize:{self.MaxResponseMessageSize}, ClientConnectionTime:{self.ClientConnectionTime}, ClientLastContactTime:{self.ClientLastContactTime}, CurrentSubscriptionsCount:{self.CurrentSubscriptionsCount}, CurrentMonitoredItemsCount:{self.CurrentMonitoredItemsCount}, CurrentPublishRequestsInQueue:{self.CurrentPublishRequestsInQueue}, TotalRequestCount:{self.TotalRequestCount}, UnauthorizedRequestCount:{self.UnauthorizedRequestCount}, ReadCount:{self.ReadCount}, HistoryReadCount:{self.HistoryReadCount}, WriteCount:{self.WriteCount}, HistoryUpdateCount:{self.HistoryUpdateCount}, CallCount:{self.CallCount}, CreateMonitoredItemsCount:{self.CreateMonitoredItemsCount}, ModifyMonitoredItemsCount:{self.ModifyMonitoredItemsCount}, SetMonitoringModeCount:{self.SetMonitoringModeCount}, SetTriggeringCount:{self.SetTriggeringCount}, DeleteMonitoredItemsCount:{self.DeleteMonitoredItemsCount}, CreateSubscriptionCount:{self.CreateSubscriptionCount}, ModifySubscriptionCount:{self.ModifySubscriptionCount}, SetPublishingModeCount:{self.SetPublishingModeCount}, PublishCount:{self.PublishCount}, RepublishCount:{self.RepublishCount}, TransferSubscriptionsCount:{self.TransferSubscriptionsCount}, DeleteSubscriptionsCount:{self.DeleteSubscriptionsCount}, AddNodesCount:{self.AddNodesCount}, AddReferencesCount:{self.AddReferencesCount}, DeleteNodesCount:{self.DeleteNodesCount}, DeleteReferencesCount:{self.DeleteReferencesCount}, BrowseCount:{self.BrowseCount}, BrowseNextCount:{self.BrowseNextCount}, TranslateBrowsePathsToNodeIdsCount:{self.TranslateBrowsePathsToNodeIdsCount}, QueryFirstCount:{self.QueryFirstCount}, QueryNextCount:{self.QueryNextCount}, RegisterNodesCount:{self.RegisterNodesCount}, UnregisterNodesCount:{self.UnregisterNodesCount})
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:15:00.783806
+            - QualifiedName(0:SessionId) | Variable
+                Value      : NumericNodeId(ns=6;i=1790994689)
+                DataType   : VariantType.NodeId
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.818610
+            - QualifiedName(0:SessionName) | Variable
+                Value      : Pure Python Client Session1
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.846252
+            - QualifiedName(0:ClientDescription) | Variable
+                Value      : ApplicationDescription(ApplicationUri:{self.ApplicationUri}, ProductUri:{self.ProductUri}, ApplicationName:{self.ApplicationName}, ApplicationType:{self.ApplicationType}, GatewayServerUri:{self.GatewayServerUri}, DiscoveryProfileUri:{self.DiscoveryProfileUri}, DiscoveryUrls:{self.DiscoveryUrls})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.873613
+            - QualifiedName(0:ServerUri) | Variable
+                Value      : None
+                DataType   : VariantType.Null
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.899599
+            - QualifiedName(0:EndpointUrl) | Variable
+                Value      : opc.tcp://172.30.2.55:48080/uOPC/
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.928638
+            - QualifiedName(0:LocaleIds) | Variable
+                Value      : ['en']
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.953630
+            - QualifiedName(0:ActualSessionTimeout) | Variable
+                Value      : 3600000.0
+                DataType   : VariantType.Double
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:00.978679
+            - QualifiedName(0:MaxResponseMessageSize) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.006622
+            - QualifiedName(0:ClientConnectionTime) | Variable
+                Value      : 2025-12-16 06:14:51.071191
+                DataType   : VariantType.DateTime
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.031672
+            - QualifiedName(0:ClientLastContactTime) | Variable
+                Value      : 2025-12-16 06:15:00.899588
+                DataType   : VariantType.DateTime
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.057112
+            - QualifiedName(0:CurrentSubscriptionsCount) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.086024
+            - QualifiedName(0:CurrentMonitoredItemsCount) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.111719
+            - QualifiedName(0:CurrentPublishRequestsInQueue) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.142085
+            - QualifiedName(0:TotalRequestCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.170631
+            - QualifiedName(0:UnauthorizedRequestCount) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.196624
+            - QualifiedName(0:ReadCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.222623
+            - QualifiedName(0:HistoryReadCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.247604
+            - QualifiedName(0:WriteCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.272586
+            - QualifiedName(0:HistoryUpdateCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.297622
+            - QualifiedName(0:CallCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.322641
+            - QualifiedName(0:CreateMonitoredItemsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.348734
+            - QualifiedName(0:ModifyMonitoredItemsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.374650
+            - QualifiedName(0:SetMonitoringModeCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.399585
+            - QualifiedName(0:SetTriggeringCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.425561
+            - QualifiedName(0:DeleteMonitoredItemsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.450617
+            - QualifiedName(0:CreateSubscriptionCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.475590
+            - QualifiedName(0:ModifySubscriptionCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.500711
+            - QualifiedName(0:SetPublishingModeCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.528622
+            - QualifiedName(0:PublishCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.555703
+            - QualifiedName(0:RepublishCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.582703
+            - QualifiedName(0:TransferSubscriptionsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.608718
+            - QualifiedName(0:DeleteSubscriptionsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.635657
+            - QualifiedName(0:AddNodesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.659613
+            - QualifiedName(0:AddReferencesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.684600
+            - QualifiedName(0:DeleteNodesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.708668
+            - QualifiedName(0:DeleteReferencesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.733608
+            - QualifiedName(0:BrowseCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.758638
+            - QualifiedName(0:BrowseNextCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.784640
+            - QualifiedName(0:TranslateBrowsePathsToNodeIdsCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.811639
+            - QualifiedName(0:QueryFirstCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.836708
+            - QualifiedName(0:QueryNextCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.862587
+            - QualifiedName(0:RegisterNodesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.887688
+            - QualifiedName(0:UnregisterNodesCount) | Variable
+                Value      : ServiceCounterDataType(TotalCount:{self.TotalCount}, ErrorCount:{self.ErrorCount})
+                DataType   : VariantType.ExtensionObject
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.912625
+          - QualifiedName(0:SessionSecurityDiagnostics) | Variable
+              Value      : SessionSecurityDiagnosticsDataType(SessionId:{self.SessionId}, ClientUserIdOfSession:{self.ClientUserIdOfSession}, ClientUserIdHistory:{self.ClientUserIdHistory}, AuthenticationMechanism:{self.AuthenticationMechanism}, Encoding:{self.Encoding}, TransportProtocol:{self.TransportProtocol}, SecurityMode:{self.SecurityMode}, SecurityPolicyUri:{self.SecurityPolicyUri}, ClientCertificate:{self.ClientCertificate})
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:15:00.783833
+            - QualifiedName(0:SessionId) | Variable
+                Value      : NumericNodeId(ns=6;i=1790994689)
+                DataType   : VariantType.NodeId
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.965594
+            - QualifiedName(0:ClientUserIdOfSession) | Variable
+                Value      : Anonymous
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:01.991258
+            - QualifiedName(0:ClientUserIdHistory) | Variable
+                Value      : ['Anonymous', 'Anonymous']
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.017686
+            - QualifiedName(0:AuthenticationMechanism) | Variable
+                Value      : Anonymous
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.043655
+            - QualifiedName(0:Encoding) | Variable
+                Value      : Binary
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.068645
+            - QualifiedName(0:TransportProtocol) | Variable
+                Value      : opc.tcp
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.094591
+            - QualifiedName(0:SecurityMode) | Variable
+                Value      : 1
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.120559
+            - QualifiedName(0:SecurityPolicyUri) | Variable
+                Value      : http://opcfoundation.org/UA/SecurityPolicy#None
+                DataType   : VariantType.String
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.145577
+            - QualifiedName(0:ClientCertificate) | Variable
+                Value      : None
+                DataType   : VariantType.Null
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:15:02.170580
+          - QualifiedName(0:SubscriptionDiagnosticsArray) | Variable
+              Value      : []
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:15:02.196345
+      - QualifiedName(0:EnabledFlag) | Variable
+          Value      : True
+          DataType   : VariantType.Boolean
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.901909
+    - QualifiedName(0:VendorServerInfo) | Object
+    - QualifiedName(0:ServerRedundancy) | Object
+      - QualifiedName(0:RedundancySupport) | Variable
+          Value      : 0
+          DataType   : VariantType.Int32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.906956
+    - QualifiedName(0:Namespaces) | Object
+      - QualifiedName(0:http://opcfoundation.org/UA/) | Object
+        - QualifiedName(0:NamespaceUri) | Variable
+            Value      : http://opcfoundation.org/UA/
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.911928
+        - QualifiedName(0:NamespaceVersion) | Variable
+            Value      : 1.05.03
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.916891
+        - QualifiedName(0:NamespacePublicationDate) | Variable
+            Value      : 2023-12-15 00:00:00
+            DataType   : VariantType.DateTime
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.922069
+        - QualifiedName(0:IsNamespaceSubset) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.926914
+        - QualifiedName(0:StaticNodeIdTypes) | Variable
+            Value      : [0]
+            DataType   : VariantType.Int32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.931817
+        - QualifiedName(0:StaticNumericNodeIdRange) | Variable
+            Value      : ['1:2252', '2270', '2273', '2280', '2283', '2291:2293', '2297:2734', '2738:2991', '2995', '2998:3703', '3710:11191', '11194:11195', '11202:11241', '11243:11272', '11276:11280', '11284:11311', '11315:11491', '11495:11501', '11503:11701', '11706', '11708', '11716:12164', '12169:12748', '12752:12872', '12875:12884', '12888:12910', '12912:14414', '14416:15003', '15005:15605', '15607:16300', '16306:17633', '17635:19090', '19092:24094', '24102:24103', '24105:31915', '31917:2147483647']
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.936960
+        - QualifiedName(0:StaticStringNodeIdPattern) | Variable
+            Value      : 
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.941897
+        - QualifiedName(0:DefaultRolePermissions) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.946933
+        - QualifiedName(0:DefaultUserRolePermissions) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.952056
+        - QualifiedName(0:DefaultAccessRestrictions) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.957110
+        - QualifiedName(0:ModelVersion) | Variable
+            Value      : 1.5.3
+            DataType   : VariantType.String
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:24.961973
+    - QualifiedName(0:GetMonitoredItems) | Method
+      - QualifiedName(0:InputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:36.861464
+      - QualifiedName(0:OutputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:36.869992
+    - QualifiedName(0:ResendData) | Method
+      - QualifiedName(0:InputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:36.877038
+    - QualifiedName(0:RequestServerStateChange) | Method
+      - QualifiedName(0:InputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:36.885999
+    - QualifiedName(0:ServerConfiguration) | Object
+      - QualifiedName(0:CertificateGroups) | Object
+        - QualifiedName(0:DefaultApplicationGroup) | Object
+          - QualifiedName(0:TrustList) | Object
+            - QualifiedName(0:LastUpdateTime) | Variable
+                Value      : 1601-01-01 00:00:00
+                DataType   : VariantType.DateTime
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-11-28 12:08:24.967082
+            - QualifiedName(0:OpenWithMasks) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.904136
+              - QualifiedName(0:OutputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.911418
+            - QualifiedName(0:CloseAndUpdate) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.922353
+              - QualifiedName(0:OutputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.929053
+            - QualifiedName(0:AddCertificate) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.935455
+            - QualifiedName(0:RemoveCertificate) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.944168
+            - QualifiedName(0:Size) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt64
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-11-28 12:08:24.971846
+            - QualifiedName(0:Writable) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-11-28 12:08:24.976894
+            - QualifiedName(0:UserWritable) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-11-28 12:08:24.981931
+            - QualifiedName(0:OpenCount) | Variable
+                Value      : 0
+                DataType   : VariantType.UInt16
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-11-28 12:08:24.987183
+            - QualifiedName(0:Open) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:36.991907
+              - QualifiedName(0:OutputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.002483
+            - QualifiedName(0:Close) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.010081
+            - QualifiedName(0:Read) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.019073
+              - QualifiedName(0:OutputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.029239
+            - QualifiedName(0:Write) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.037959
+            - QualifiedName(0:GetPosition) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.045728
+              - QualifiedName(0:OutputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.053000
+            - QualifiedName(0:SetPosition) | Method
+              - QualifiedName(0:InputArguments) | Variable
+                  Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+                  DataType   : VariantType.ExtensionObject
+                  StatusCode : StatusCode(Good)
+                  Timestamp  : 2025-12-08 07:22:37.061059
+          - QualifiedName(0:CertificateTypes) | Variable
+              Value      : [FourByteNodeId(i=12560)]
+              DataType   : VariantType.NodeId
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:24.993087
+      - QualifiedName(0:ApplicationUri) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:24.998906
+      - QualifiedName(0:ProductUri) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.004050
+      - QualifiedName(0:ApplicationType) | Variable
+          Value      : 0
+          DataType   : VariantType.Int32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.008957
+      - QualifiedName(0:ServerCapabilities) | Variable
+          Value      : ['DA']
+          DataType   : VariantType.String
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.013999
+      - QualifiedName(0:SupportedPrivateKeyFormats) | Variable
+          Value      : ['PFX', 'PEM']
+          DataType   : VariantType.String
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.018980
+      - QualifiedName(0:MaxTrustListSize) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.023884
+      - QualifiedName(0:MulticastDnsEnabled) | Variable
+          Value      : False
+          DataType   : VariantType.Boolean
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.028875
+      - QualifiedName(0:HasSecureElement) | Variable
+          Value      : False
+          DataType   : VariantType.Boolean
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.034130
+      - QualifiedName(0:UpdateCertificate) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.145217
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.155494
+      - QualifiedName(0:GetCertificates) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.164107
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.172047
+      - QualifiedName(0:ApplyChanges) | Method
+      - QualifiedName(0:CancelChanges) | Method
+      - QualifiedName(0:CreateSigningRequest) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.179491
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.188350
+      - QualifiedName(0:GetRejectedList) | Method
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.199190
+      - QualifiedName(0:ResetToServerDefaults) | Method
+      - QualifiedName(0:KeyCredentialConfiguration) | Object
+      - QualifiedName(0:AuthorizationServices) | Object
+      - QualifiedName(0:UserManagement) | Object
+        - QualifiedName(0:Users) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.039968
+        - QualifiedName(0:PasswordLength) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.044947
+        - QualifiedName(0:PasswordOptions) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.049899
+        - QualifiedName(0:PasswordRestrictions) | Variable
+            Value      : LocalizedText(Encoding:0, Locale:None, Text:None)
+            DataType   : VariantType.LocalizedText
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.054972
+        - QualifiedName(0:AddUser) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.244551
+        - QualifiedName(0:ModifyUser) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.253389
+        - QualifiedName(0:RemoveUser) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.304445
+        - QualifiedName(0:ChangePassword) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.313206
+    - QualifiedName(0:Quantities) | Object
+    - QualifiedName(0:DefaultHAConfiguration) | Object
+      - QualifiedName(0:AggregateConfiguration) | Object
+        - QualifiedName(0:TreatUncertainAsBad) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.059958
+        - QualifiedName(0:PercentDataBad) | Variable
+            Value      : 0
+            DataType   : VariantType.Byte
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.086442
+        - QualifiedName(0:PercentDataGood) | Variable
+            Value      : 0
+            DataType   : VariantType.Byte
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.090947
+        - QualifiedName(0:UseSlopedExtrapolation) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.095973
+      - QualifiedName(0:AggregateFunctions) | Object
+      - QualifiedName(0:Stepped) | Variable
+          Value      : False
+          DataType   : VariantType.Boolean
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.100985
+      - QualifiedName(0:Definition) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.105960
+      - QualifiedName(0:MaxTimeInterval) | Variable
+          Value      : 0.0
+          DataType   : VariantType.Double
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.110866
+      - QualifiedName(0:MinTimeInterval) | Variable
+          Value      : 0.0
+          DataType   : VariantType.Double
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.115977
+      - QualifiedName(0:ExceptionDeviation) | Variable
+          Value      : 0.0
+          DataType   : VariantType.Double
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.121012
+      - QualifiedName(0:ExceptionDeviationFormat) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.125936
+      - QualifiedName(0:StartOfArchive) | Variable
+          Value      : 1601-01-01 00:00:00
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.129960
+      - QualifiedName(0:StartOfOnlineArchive) | Variable
+          Value      : 1601-01-01 00:00:00
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.134941
+      - QualifiedName(0:ServerTimestampSupported) | Variable
+          Value      : False
+          DataType   : VariantType.Boolean
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.139584
+      - QualifiedName(0:MaxTimeStoredValues) | Variable
+          Value      : 0.0
+          DataType   : VariantType.Double
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.144504
+      - QualifiedName(0:MaxCountStoredValues) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt32
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.149889
+    - QualifiedName(0:DefaultHEConfiguration) | Object
+      - QualifiedName(0:EventTypes) | Object
+      - QualifiedName(0:StartOfArchive) | Variable
+          Value      : 1601-01-01 00:00:00
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.154867
+      - QualifiedName(0:StartOfOnlineArchive) | Variable
+          Value      : 1601-01-01 00:00:00
+          DataType   : VariantType.DateTime
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.159893
+    - QualifiedName(0:Dictionaries) | Object
+    - QualifiedName(0:PublishSubscribe) | Object
+      - QualifiedName(0:GetSecurityKeys) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.526034
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.535532
+      - QualifiedName(0:GetSecurityGroup) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.545614
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.552408
+      - QualifiedName(0:SecurityGroups) | Object
+        - QualifiedName(0:AddSecurityGroup) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.561078
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.570498
+        - QualifiedName(0:RemoveSecurityGroup) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.580652
+      - QualifiedName(0:KeyPushTargets) | Object
+        - QualifiedName(0:AddPushTarget) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.590129
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.601444
+        - QualifiedName(0:RemovePushTarget) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.610161
+      - QualifiedName(0:SetSecurityKeys) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.618166
+      - QualifiedName(0:AddConnection) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.626169
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.636070
+      - QualifiedName(0:RemoveConnection) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:37.646173
+      - QualifiedName(0:PublishedDataSets) | Object
+      - QualifiedName(0:SubscribedDataSets) | Object
+      - QualifiedName(0:PubSubConfiguration) | Object
+        - QualifiedName(0:Size) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt64
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.164909
+        - QualifiedName(0:Writable) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.169775
+        - QualifiedName(0:UserWritable) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.174928
+        - QualifiedName(0:OpenCount) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt16
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.178900
+        - QualifiedName(0:Open) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.688371
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.697108
+        - QualifiedName(0:Close) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.707647
+        - QualifiedName(0:Read) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.716235
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.727575
+        - QualifiedName(0:Write) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.736012
+        - QualifiedName(0:GetPosition) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.745203
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.754295
+        - QualifiedName(0:SetPosition) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.764179
+        - QualifiedName(0:ReserveIds) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.775442
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.784560
+        - QualifiedName(0:CloseAndUpdate) | Method
+          - QualifiedName(0:InputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.794135
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:37.803579
+      - QualifiedName(0:Status) | Object
+        - QualifiedName(0:State) | Variable
+            Value      : 0
+            DataType   : VariantType.Int32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.183517
+      - QualifiedName(0:Diagnostics) | Object
+        - QualifiedName(0:DiagnosticsLevel) | Variable
+            Value      : None
+            DataType   : VariantType.Null
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.188859
+        - QualifiedName(0:TotalInformation) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.193874
+          - QualifiedName(0:Active) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.387172
+          - QualifiedName(0:Classification) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.412968
+          - QualifiedName(0:DiagnosticsLevel) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.438179
+        - QualifiedName(0:TotalError) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.198923
+          - QualifiedName(0:Active) | Variable
+              Value      : False
+              DataType   : VariantType.Boolean
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.490936
+          - QualifiedName(0:Classification) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.517145
+          - QualifiedName(0:DiagnosticsLevel) | Variable
+              Value      : None
+              DataType   : VariantType.Null
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-16 06:09:53.543089
+        - QualifiedName(0:Reset) | Method
+        - QualifiedName(0:SubError) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.203896
+        - QualifiedName(0:Counters) | Object
+          - QualifiedName(0:StateError) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.209001
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.662080
+            - QualifiedName(0:Classification) | Variable
+                Value      : 1
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.689194
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.717139
+          - QualifiedName(0:StateOperationalByMethod) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.213975
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.772198
+            - QualifiedName(0:Classification) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.802055
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.830357
+          - QualifiedName(0:StateOperationalByParent) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.218814
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.885765
+            - QualifiedName(0:Classification) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.912137
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.936784
+          - QualifiedName(0:StateOperationalFromError) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.223914
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:53.990188
+            - QualifiedName(0:Classification) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.017176
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.044107
+          - QualifiedName(0:StatePausedByParent) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.228963
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.102050
+            - QualifiedName(0:Classification) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.127152
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.153157
+          - QualifiedName(0:StateDisabledByMethod) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt32
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.233958
+            - QualifiedName(0:Active) | Variable
+                Value      : False
+                DataType   : VariantType.Boolean
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.203177
+            - QualifiedName(0:Classification) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.231161
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.256116
+        - QualifiedName(0:LiveValues) | Object
+          - QualifiedName(0:ConfiguredDataSetWriters) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt16
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.239003
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.333161
+          - QualifiedName(0:ConfiguredDataSetReaders) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt16
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.243936
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.385140
+          - QualifiedName(0:OperationalDataSetWriters) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt16
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.249028
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.438088
+          - QualifiedName(0:OperationalDataSetReaders) | Variable
+              Value      : 0
+              DataType   : VariantType.UInt16
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-11-28 12:08:25.253883
+            - QualifiedName(0:DiagnosticsLevel) | Variable
+                Value      : 0
+                DataType   : VariantType.Int32
+                StatusCode : StatusCode(Good)
+                Timestamp  : 2025-12-16 06:09:54.491116
+      - QualifiedName(0:PubSubCapablities) | Object
+        - QualifiedName(0:MaxPubSubConnections) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.258950
+        - QualifiedName(0:MaxWriterGroups) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.264025
+        - QualifiedName(0:MaxReaderGroups) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.270123
+        - QualifiedName(0:MaxDataSetWriters) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.276098
+        - QualifiedName(0:MaxDataSetReaders) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.282000
+        - QualifiedName(0:MaxFieldsPerDataSet) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.286962
+        - QualifiedName(0:MaxDataSetWritersPerGroup) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.291959
+        - QualifiedName(0:MaxSecurityGroups) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.297225
+        - QualifiedName(0:MaxPushTargets) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.302990
+        - QualifiedName(0:MaxPublishedDataSets) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.307998
+        - QualifiedName(0:MaxStandaloneSubscribedDataSets) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.313101
+        - QualifiedName(0:MaxNetworkMessageSizeDatagram) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.319072
+        - QualifiedName(0:MaxNetworkMessageSizeBroker) | Variable
+            Value      : 0
+            DataType   : VariantType.UInt32
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.323931
+        - QualifiedName(0:SupportSecurityKeyPull) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.327963
+        - QualifiedName(0:SupportSecurityKeyPush) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.332943
+        - QualifiedName(0:SupportSecurityKeyServer) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.338541
+      - QualifiedName(0:DataSetClasses) | Object
+      - QualifiedName(0:SupportedTransportProfiles) | Variable
+          Value      : uadp
+          DataType   : VariantType.String
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.343954
+      - QualifiedName(0:DefaultDatagramPublisherId) | Variable
+          Value      : 0
+          DataType   : VariantType.UInt64
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.348968
+      - QualifiedName(0:ConfigurationVersion) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.353913
+      - QualifiedName(0:DefaultSecurityKeyServices) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.359030
+      - QualifiedName(0:ConfigurationProperties) | Variable
+          Value      : None
+          DataType   : VariantType.Null
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-11-28 12:08:25.363181
+    - QualifiedName(0:Resources) | Object
+      - QualifiedName(0:ProvisionableDevice) | Object
+        - QualifiedName(0:IsSingleton) | Variable
+            Value      : False
+            DataType   : VariantType.Boolean
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-11-28 12:08:25.369627
+        - QualifiedName(0:RequestTickets) | Method
+          - QualifiedName(0:OutputArguments) | Variable
+              Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+              DataType   : VariantType.ExtensionObject
+              StatusCode : StatusCode(Good)
+              Timestamp  : 2025-12-08 07:22:38.150556
+      - QualifiedName(0:Communication) | Object
+        - QualifiedName(0:MappingTables) | Object
+        - QualifiedName(0:NetworkInterfaces) | Object
+        - QualifiedName(0:Streams) | Object
+          - QualifiedName(0:TalkerStreams) | Object
+          - QualifiedName(0:ListenerStreams) | Object
+  - QualifiedName(0:Aliases) | Object
+    - QualifiedName(0:FindAlias) | Method
+      - QualifiedName(0:InputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:38.160688
+      - QualifiedName(0:OutputArguments) | Variable
+          Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+          DataType   : VariantType.ExtensionObject
+          StatusCode : StatusCode(Good)
+          Timestamp  : 2025-12-08 07:22:38.168141
+    - QualifiedName(0:LastChange) | Variable
+        Value      : None
+        DataType   : VariantType.Null
+        StatusCode : StatusCode(Good)
+        Timestamp  : 2025-11-28 12:08:25.375132
+    - QualifiedName(0:TagVariables) | Object
+      - QualifiedName(0:FindAlias) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:38.186322
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:38.194086
+    - QualifiedName(0:Topics) | Object
+      - QualifiedName(0:FindAlias) | Method
+        - QualifiedName(0:InputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description}), Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:38.201217
+        - QualifiedName(0:OutputArguments) | Variable
+            Value      : [Argument(Name:{self.Name}, DataType:{self.DataType}, ValueRank:{self.ValueRank}, ArrayDimensions:{self.ArrayDimensions}, Description:{self.Description})]
+            DataType   : VariantType.ExtensionObject
+            StatusCode : StatusCode(Good)
+            Timestamp  : 2025-12-08 07:22:38.209633

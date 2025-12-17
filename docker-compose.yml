@@ -27,7 +27,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,EXTERNAL://0.0.0.0:9094
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://172.30.121.84:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
 
@@ -101,17 +101,27 @@ services:
       context: ./opcua-connector
       dockerfile: Dockerfile
     environment:
-      OPCUA_ENDPOINT: "opc.tcp://172.30.121.17:48080/uOPC/"
+      OPCUA_ENDPOINT : "opc.tcp://172.30.2.55:48080/uOPC/"
+      PRODUCTION_LINE : "Line-1"
+      EQUIPMENT_NAME : "Compressor"
+      INCLUDE_DIAGNOSTICS : "false"
+      KAFKA_BOOTSTRAP_SERVERS : "kafka:9092"
+      KAFKA_TOPIC : "OPCUA"
+      KAFKA_TOPIC_EVENTS : "OPCUA_EVENTS"
+      SUBSCRIPTION_PERIOD_MS : 1000
+      QUEUE_SIZE : 20
+      TRIGGER_MODE : "StatusValueTimestamp"
+      #OPCUA_ENDPOINT: "opc.tcp://172.30.2.55:48080/uOPC/"
       OPCUA_SECURITY_MODE: "None"
       OPCUA_SECURITY_POLICY: "None"
       # If server requires auth:
       # OPCUA_USERNAME: "user"
       # OPCUA_PASSWORD: "pass"
 
-      KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"   # in-cluster address
-      KAFKA_TOPIC: "OPCUA"
+      #KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"   # in-cluster address
+      #KAFKA_TOPIC: "OPCUA"
 
-      SUBSCRIPTION_PERIOD_MS: "1000"
+      #SUBSCRIPTION_PERIOD_MS: "1000"
       OPCUA_CLIENT_TIMEOUT_SEC: "30.0"
       OPCUA_WATCHDOG_INTERVAL: "2.0"
 
@@ -121,14 +131,14 @@ services:
       # Optional cap if server has too many variables
       # MAX_DISCOVER_NODES: "1000"
 
-      KAFKA_TOPIC_EVENTS: "OPCUA_EVENTS"
+      #KAFKA_TOPIC_EVENTS: "OPCUA_EVENTS"
       LOG_LEVEL: "INFO"
 
       # subscription tuning
       #SUBSCRIPTION_PERIOD_MS: "500"        # publish period per subscription
       SUBSCRIPTION_BATCH_SIZE: "250"       # nodes per subscription (shard size)
-      QUEUE_SIZE: "20"                     # monitored item queue size
-      TRIGGER_MODE: "StatusValueTimestamp" # notify on status/value/timestamp changes
+      #QUEUE_SIZE: "20"                     # monitored item queue size
+      #TRIGGER_MODE: "StatusValueTimestamp" # notify on status/value/timestamp changes
 
       # discovery controls (remove to truly discover everything)
       NAMESPACE_ALLOWLIST: "0,2"           # optional: restrict to namespaces known to carry data
@@ -164,7 +174,7 @@ services:
       AWS_S3_ENDPOINT: http://minio:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
-      MAX_OFFSETS_PER_TRIGGER: "200000"
+      MAX_OFFSETS_PER_TRIGGER: "100000"
       SPARK_SHUFFLE_PARTITIONS: "200"
       DELTA_PCDM_FLOAT:   s3a://historian-data/pcdm/events_float
       DELTA_PCDM_STRING:  s3a://historian-data/pcdm/events_string
@@ -172,8 +182,18 @@ services:
       DELTA_PCDM_LATEST:  s3a://historian-data/pcdm/latest
       CHECKPOINT_EVENTS:  s3a://checkpoints/opcua-rtdip/events
       CHECKPOINT_LATEST:  s3a://checkpoints/opcua-rtdip/latest
-      KAFKA_STARTING_OFFSETS: earliest   # set "earliest" for a one-time backfill test      
-      CHECKPOINT_SUFFIX: run7               # forces new query paths
+      KAFKA_STARTING_OFFSETS: latest   # set "earliest" for a one-time backfill test      
+      #CHECKPOINT_SUFFIX: run7               # forces new query paths
+
+      MINIO_BUCKET : rtdip
+      ENTERPRISE : Utthunga
+      SITE : Site_name
+      PRODUCTION_LINE : Line-1        # fallback if connector doesn't send production_line
+      EQUIPMENT_NAME : Compressor     # fallback if connector doesn't send equipment_name
+
+      HIER_PATH : s3a://rtdip/Utthunga/Site_name
+      CHECKPOINT_HIER : s3a://checkpoints/opcua-rtdip/hierarchy
+      #ALLOWED_TAGS : Comp_Pressure,Comp_Motor_Power,Comp_Motor_Speed,Comp_Motor_Current_A,Comp_Motor_Current_B,Comp_Motor_Current_C,Comp_Motor_Voltage,Comp_Supply_Voltage,Comp_Air_run_time,Comp_Oil_run_time,Comp_Grease_run_time
 
     volumes:
       - ./pipelines:/opt/spark/pipelines

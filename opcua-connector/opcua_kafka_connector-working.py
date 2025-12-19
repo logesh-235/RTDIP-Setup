@@ -1,10 +1,8 @@
 
 # opcua_kafka_connector.compressor_only.py
-# Purpose: Subscribe ONLY to PLC_S7_200_SMART.Compressor tags (optionally Diagnostics) and publish to Kafka
-# Notes:
-# - Uses asyncua and KafkaProducer
-# - Adds production_line and equipment_name to payload for downstream DB writes
-# - Keys Kafka messages by node_id for per-tag ordering
+# Connects to OPC UA server, subscribes ONLY to:
+# Objects → Modbus → PLC_S7_200_SMART → PLC_S7_200_SMART.Compressor
+# Publishes value changes to Kafka with enrichment (production_line, equipment_name).
 
 import asyncio
 import json
@@ -20,7 +18,7 @@ from asyncua.common.node import Node
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
-# --- Config ---
+# --- Config (env) ---
 OPCUA_ENDPOINT = os.getenv("OPCUA_ENDPOINT", "opc.tcp://172.30.2.55:48080/uOPC/")
 OPCUA_SECURITY_MODE = os.getenv("OPCUA_SECURITY_MODE", "None")
 OPCUA_SECURITY_POLICY = os.getenv("OPCUA_SECURITY_POLICY", "None")
@@ -28,16 +26,16 @@ OPCUA_CLIENT_TIMEOUT_SEC = float(os.getenv("OPCUA_CLIENT_TIMEOUT_SEC", "30.0"))
 OPCUA_USERNAME = os.getenv("OPCUA_USERNAME")
 OPCUA_PASSWORD = os.getenv("OPCUA_PASSWORD")
 
-# Path filter: Modbus → PLC_S7_200_SMART → PLC_S7_200_SMART.Compressor (vendor namespace = 2)
+# Path filter: Modbus → PLC_S7_200_SMART → PLC_S7_200_SMART.Compressor (namespace = 2)
 BROWSE_PATH = [
     ua.QualifiedName("Modbus", 2),
     ua.QualifiedName("PLC_S7_200_SMART", 2),
     ua.QualifiedName("PLC_S7_200_SMART.Compressor", 2),
 ]
-INCLUDE_DIAGNOSTICS = os.getenv("INCLUDE_DIAGNOSTICS", "false").strip().lower() in {"1","true","yes"}
+INCLUDE_DIAGNOSTICS = os.getenv("INCLUDE_DIAGNOSTICS", "false").strip().lower() in {"1", "true", "yes"}
 
 # Kafka
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "kafka:9092")  # in-cluster
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "OPCUA")
 KAFKA_TOPIC_EVENTS = os.getenv("KAFKA_TOPIC_EVENTS", "OPCUA_EVENTS")
 KAFKA_COMPRESSION_TYPE = os.getenv("KAFKA_COMPRESSION_TYPE", "lz4")
@@ -51,6 +49,7 @@ TRIGGER_MODE = os.getenv("TRIGGER_MODE", "StatusValueTimestamp").strip()
 PRODUCTION_LINE = os.getenv("PRODUCTION_LINE", "Line-1")
 EQUIPMENT_NAME = os.getenv("EQUIPMENT_NAME", "Compressor")
 
+# Logging
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 logging.basicConfig(
     level=getattr(logging, LOG_LEVEL, logging.INFO),
@@ -60,9 +59,7 @@ logging.basicConfig(
 logger = logging.getLogger("opcua_kafka_connector_compressor")
 
 # --- Helpers ---
-
 def to_plain_json(value):
-    # Make asyncua values JSON-serializable
     try:
         if isinstance(value, ua.DataValue):
             return {
@@ -86,11 +83,7 @@ def to_plain_json(value):
             return {k: to_plain_json(v) for k, v in value.items()}
         return value
     except Exception:
-        try:
-            return str(value)
-        except Exception:
-            return None
-
+        return str(value) if value is not None else None
 
 def create_kafka_producer():
     try:
@@ -98,6 +91,7 @@ def create_kafka_producer():
             return json.dumps(obj, default=to_plain_json).encode("utf-8")
         def key_serializer(key: str):
             return key.encode("utf-8") if isinstance(key, str) else None
+
         producer = KafkaProducer(
             bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS,
             value_serializer=value_serializer,
@@ -112,7 +106,6 @@ def create_kafka_producer():
     except KafkaError as e:
         logger.error(f"Failed to connect to Kafka: {e}")
         sys.exit(1)
-
 
 class SubHandler:
     def __init__(self, producer: KafkaProducer, topic_values: str, display_names: Dict[str, str]):
@@ -175,11 +168,11 @@ class SubHandler:
         }
         self.producer.send(self.topic_values, diag)
 
-
 class EventHandler:
     def __init__(self, producer: KafkaProducer, topic_events: str):
         self.producer = producer
         self.topic_events = topic_events
+
     def event_notification(self, event: ua.EventNotificationList):
         payload = {
             "timestamp": datetime.utcnow().isoformat(),
@@ -189,7 +182,6 @@ class EventHandler:
             "production_line": PRODUCTION_LINE,
         }
         self.producer.send(self.topic_events, payload)
-
 
 # --- Targeted discovery: ONLY Compressor (ns=2 path) ---
 async def get_compressor_node(client: Client) -> Node:
@@ -204,6 +196,7 @@ async def list_compressor_variables(client: Client, compressor: Node, include_di
             nclass = await ch.read_node_class()
         except Exception:
             nclass = None
+
         if nclass == ua.NodeClass.Variable:
             vars_list.append(ch)
         elif include_diagnostics and nclass == ua.NodeClass.Object:
@@ -223,7 +216,6 @@ async def main():
     producer = create_kafka_producer()
     client = Client(url=OPCUA_ENDPOINT, timeout=OPCUA_CLIENT_TIMEOUT_SEC)
 
-    # Security/auth
     if OPCUA_SECURITY_MODE.lower() != "none" and OPCUA_SECURITY_POLICY.lower() != "none":
         cert_path = "./config/client_cert.der"
         key_path = "./config/client_key.pem"
@@ -275,24 +267,14 @@ async def main():
 
         handler = SubHandler(producer, KAFKA_TOPIC, display_names)
         sub = await client.create_subscription(SUBSCRIPTION_PERIOD_MS, handler)
-        trigger_map = {
-            "StatusValueTimestamp": ua.DataChangeTrigger.StatusValueTimestamp,
-            "Status": ua.DataChangeTrigger.Status,
-            "StatusValue": ua.DataChangeTrigger.StatusValue,
-        }
-        trigger = trigger_map.get(TRIGGER_MODE, ua.DataChangeTrigger.StatusValueTimestamp)
-        subscribed = 0
 
+        subscribed = 0
         for node in variables:
             try:
-                await sub.subscribe_data_change(
-                    node,
-                    queuesize=QUEUE_SIZE,
-                )
+                await sub.subscribe_data_change(node, queuesize=QUEUE_SIZE)
                 subscribed += 1
             except Exception as e:
                 logger.error("Failed to subscribe %s: %s", node, e)
-
         logger.info("Subscribed %d/%d Compressor variables", subscribed, len(variables))
 
         # Optional: events
@@ -316,16 +298,11 @@ async def main():
                 pass
 
         await stop_event.wait()
-        try:
-            await sub.delete()
-        except Exception:
-            pass
-        try:
-            producer.close()
-        except Exception:
-            pass
+        try: await sub.delete()
+        except Exception: pass
+        try: producer.close()
+        except Exception: pass
         logger.info("Connector stopped cleanly.")
-
 
 if __name__ == "__main__":
     try:
@@ -334,4 +311,3 @@ if __name__ == "__main__":
         logger.info("Interrupted by user, shutting down...")
     except Exception as e:
         logger.exception(f"Unhandled error: {e}")
-        sys.exit(1)

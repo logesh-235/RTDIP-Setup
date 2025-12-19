@@ -1,9 +1,8 @@
 
 # opcua_kafka_connector.compressor_only.py
-# Connects to OPC UA server, subscribes ONLY to:
+# Auto-restarting OPC UA → Kafka connector focused on:
 # Objects → Modbus → PLC_S7_200_SMART → PLC_S7_200_SMART.Compressor
-# Publishes value changes to Kafka with enrichment (production_line, equipment_name).
-
+# Restarts from beginning on connection/token errors.
 import asyncio
 import json
 import logging
@@ -11,7 +10,7 @@ import os
 import signal
 import sys
 from datetime import datetime
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from asyncua import Client, ua
 from asyncua.common.node import Node
@@ -85,7 +84,7 @@ def to_plain_json(value):
     except Exception:
         return str(value) if value is not None else None
 
-def create_kafka_producer():
+def create_kafka_producer() -> KafkaProducer:
     try:
         def value_serializer(obj):
             return json.dumps(obj, default=to_plain_json).encode("utf-8")
@@ -105,13 +104,18 @@ def create_kafka_producer():
         return producer
     except KafkaError as e:
         logger.error(f"Failed to connect to Kafka: {e}")
-        sys.exit(1)
+        raise
 
 class SubHandler:
-    def __init__(self, producer: KafkaProducer, topic_values: str, display_names: Dict[str, str]):
+    """
+    Data-change subscription handler with status-change handling.
+    If we receive a bad status, we trigger a restart via restart_event.
+    """
+    def __init__(self, producer: KafkaProducer, topic_values: str, display_names: Dict[str, str], restart_event: asyncio.Event):
         self.producer = producer
         self.topic_values = topic_values
         self.display_names = display_names
+        self.restart_event = restart_event
 
     def _node_id_str(self, node: Node) -> str:
         try:
@@ -140,6 +144,7 @@ class SubHandler:
                     "server_timestamp": dv.ServerTimestamp.isoformat() if dv.ServerTimestamp else None,
                 }
                 self.producer.send(self.topic_values, health, key=key)
+                # If we consistently get bad values, the channel may be broken; restart will be triggered by status_change_notification
                 return
 
             display_name = self.display_names.get(node_id_str) or str(node)
@@ -158,22 +163,51 @@ class SubHandler:
         except Exception as e:
             logger.error(f"Error publishing message to Kafka: {e}")
 
-    def status_change_notification(self, status: ua.StatusChangeNotification):
-        diag = {
-            "timestamp": datetime.utcnow().isoformat(),
-            "type": "opcua_subscription_status",
-            "status": str(status),
-            "equipment_name": EQUIPMENT_NAME,
-            "production_line": PRODUCTION_LINE,
-        }
-        self.producer.send(self.topic_values, diag)
+    def status_change_notification(self, status):
+        """
+        Called by asyncua when the subscription status changes.
+        If status is not Good, trigger a restart.
+        """
+        try:
+            code = None
+            if isinstance(status, ua.StatusChangeNotification):
+                code = status.Status
+            elif hasattr(status, "Status"):
+                code = status.Status
+            msg = {
+                "timestamp": datetime.utcnow().isoformat(),
+                "type": "opcua_subscription_status",
+                "status": str(code) if code else str(status),
+                "equipment_name": EQUIPMENT_NAME,
+                "production_line": PRODUCTION_LINE,
+            }
+            self.producer.send(self.topic_values, msg)
+
+            is_bad = False
+            if isinstance(code, ua.StatusCode):
+                is_bad = code.is_bad()
+            elif hasattr(code, "is_bad"):
+                try:
+                    is_bad = code.is_bad()
+                except Exception:
+                    is_bad = False
+
+            if is_bad:
+                logger.warning(f"DataChange subscription status is BAD ({code}). Triggering restart.")
+                self.restart_event.set()
+        except Exception as e:
+            logger.error(f"status_change_notification error: {e}")
 
 class EventHandler:
-    def __init__(self, producer: KafkaProducer, topic_events: str):
+    """
+    Event subscription handler WITH status-change handling to avoid missing method logs.
+    """
+    def __init__(self, producer: KafkaProducer, topic_events: str, restart_event: asyncio.Event):
         self.producer = producer
         self.topic_events = topic_events
+        self.restart_event = restart_event
 
-    def event_notification(self, event: ua.EventNotificationList):
+    def event_notification(self, event):
         payload = {
             "timestamp": datetime.utcnow().isoformat(),
             "type": "opcua_event",
@@ -182,6 +216,37 @@ class EventHandler:
             "production_line": PRODUCTION_LINE,
         }
         self.producer.send(self.topic_events, payload)
+
+    def status_change_notification(self, status):
+        try:
+            code = None
+            if isinstance(status, ua.StatusChangeNotification):
+                code = status.Status
+            elif hasattr(status, "Status"):
+                code = status.Status
+            msg = {
+                "timestamp": datetime.utcnow().isoformat(),
+                "type": "opcua_event_subscription_status",
+                "status": str(code) if code else str(status),
+                "equipment_name": EQUIPMENT_NAME,
+                "production_line": PRODUCTION_LINE,
+            }
+            self.producer.send(self.topic_events, msg)
+
+            is_bad = False
+            if isinstance(code, ua.StatusCode):
+                is_bad = code.is_bad()
+            elif hasattr(code, "is_bad"):
+                try:
+                    is_bad = code.is_bad()
+                except Exception:
+                    is_bad = False
+
+            if is_bad:
+                logger.warning(f"Event subscription status is BAD ({code}). Triggering restart.")
+                self.restart_event.set()
+        except Exception as e:
+            logger.error(f"event status_change_notification error: {e}")
 
 # --- Targeted discovery: ONLY Compressor (ns=2 path) ---
 async def get_compressor_node(client: Client) -> Node:
@@ -211,98 +276,182 @@ async def list_compressor_variables(client: Client, compressor: Node, include_di
                         pass
     return vars_list
 
-# --- Main ---
-async def main():
-    producer = create_kafka_producer()
-    client = Client(url=OPCUA_ENDPOINT, timeout=OPCUA_CLIENT_TIMEOUT_SEC)
+# --- One-run function: builds everything and blocks until stopped or error ---
+async def run_once(stop_event: asyncio.Event) -> None:
+    producer: Optional[KafkaProducer] = None
+    client: Optional[Client] = None
+    sub = None
+    ev_sub = None
+    restart_event = asyncio.Event()
 
-    if OPCUA_SECURITY_MODE.lower() != "none" and OPCUA_SECURITY_POLICY.lower() != "none":
-        cert_path = "./config/client_cert.der"
-        key_path = "./config/client_key.pem"
-        if os.path.exists(cert_path) and os.path.exists(key_path):
+    try:
+        # Re-create Kafka producer each run to avoid stale sockets
+        producer = create_kafka_producer()
+
+        client = Client(url=OPCUA_ENDPOINT, timeout=OPCUA_CLIENT_TIMEOUT_SEC)
+
+        if OPCUA_SECURITY_MODE.lower() != "none" and OPCUA_SECURITY_POLICY.lower() != "none":
+            cert_path = "./config/client_cert.der"
+            key_path = "./config/client_key.pem"
+            if os.path.exists(cert_path) and os.path.exists(key_path):
+                try:
+                    client.set_security(
+                        getattr(ua.SecurityPolicyType, OPCUA_SECURITY_POLICY),
+                        getattr(ua.MessageSecurityMode, OPCUA_SECURITY_MODE),
+                        certificate=cert_path,
+                        private_key=key_path,
+                    )
+                    logger.info(f"Using OPC UA security: {OPCUA_SECURITY_POLICY}/{OPCUA_SECURITY_MODE}")
+                except Exception as e:
+                    logger.warning(f"Failed to set security; falling back to none: {e}")
+            else:
+                logger.warning("Security enabled but cert/key missing; using none.")
+        if OPCUA_USERNAME and OPCUA_PASSWORD:
             try:
-                client.set_security(
-                    getattr(ua.SecurityPolicyType, OPCUA_SECURITY_POLICY),
-                    getattr(ua.MessageSecurityMode, OPCUA_SECURITY_MODE),
-                    certificate=cert_path,
-                    private_key=key_path,
-                )
-                logger.info(f"Using OPC UA security: {OPCUA_SECURITY_POLICY}/{OPCUA_SECURITY_MODE}")
+                client.set_user_string(OPCUA_USERNAME, OPCUA_PASSWORD)
             except Exception as e:
-                logger.warning(f"Failed to set security; falling back to none: {e}")
-        else:
-            logger.warning("Security enabled but cert/key missing; using none.")
-    if OPCUA_USERNAME and OPCUA_PASSWORD:
-        try:
-            client.set_user_string(OPCUA_USERNAME, OPCUA_PASSWORD)
-        except Exception as e:
-            logger.warning(f"Failed to set OPC UA user credentials: {e}")
+                logger.warning(f"Failed to set OPC UA user credentials: {e}")
 
-    async with client:
-        logger.info(f"Connected to OPC UA server {OPCUA_ENDPOINT}")
-        try:
-            await client.load_data_type_definitions()
-        except Exception:
-            pass
-
-        compressor = await get_compressor_node(client)
-        logger.info("Located Compressor node: %s", compressor)
-
-        display_names: Dict[str, str] = {}
-        try:
-            dn = await compressor.read_display_name()
-            display_names[str(compressor.nodeid)] = dn.Text if hasattr(dn, "Text") else str(dn)
-        except Exception:
-            display_names[str(compressor.nodeid)] = str(compressor)
-
-        variables = await list_compressor_variables(client, compressor, INCLUDE_DIAGNOSTICS)
-        logger.info("Subscribing to %d Compressor variables (include_diagnostics=%s)", len(variables), INCLUDE_DIAGNOSTICS)
-
-        for v in variables:
+        async with client:
+            logger.info(f"Connected to OPC UA server {OPCUA_ENDPOINT}")
             try:
-                dn = await v.read_display_name()
-                display_names[str(v.nodeid)] = dn.Text if hasattr(dn, "Text") else str(dn)
+                await client.load_data_type_definitions()
             except Exception:
-                display_names[str(v.nodeid)] = str(v)
-
-        handler = SubHandler(producer, KAFKA_TOPIC, display_names)
-        sub = await client.create_subscription(SUBSCRIPTION_PERIOD_MS, handler)
-
-        subscribed = 0
-        for node in variables:
-            try:
-                await sub.subscribe_data_change(node, queuesize=QUEUE_SIZE)
-                subscribed += 1
-            except Exception as e:
-                logger.error("Failed to subscribe %s: %s", node, e)
-        logger.info("Subscribed %d/%d Compressor variables", subscribed, len(variables))
-
-        # Optional: events
-        try:
-            ev_handler = EventHandler(producer, KAFKA_TOPIC_EVENTS)
-            ev_sub = await client.create_subscription(SUBSCRIPTION_PERIOD_MS, ev_handler)
-            await ev_sub.subscribe_events(client.nodes.server)
-            logger.info("Subscribed to Server events")
-        except Exception as e:
-            logger.warning("Event subscription skipped: %s", e)
-
-        stop_event = asyncio.Event()
-        def stop_handler(*_):
-            logger.info("Shutdown signal received. Stopping connector...")
-            stop_event.set()
-        loop = asyncio.get_event_loop()
-        for sig in (signal.SIGINT, signal.SIGTERM):
-            try:
-                loop.add_signal_handler(sig, stop_handler)
-            except NotImplementedError:
                 pass
 
-        await stop_event.wait()
-        try: await sub.delete()
-        except Exception: pass
-        try: producer.close()
-        except Exception: pass
-        logger.info("Connector stopped cleanly.")
+            compressor = await get_compressor_node(client)
+            logger.info("Located Compressor node: %s", compressor)
+
+            display_names: Dict[str, str] = {}
+            try:
+                dn = await compressor.read_display_name()
+                display_names[str(compressor.nodeid)] = dn.Text if hasattr(dn, "Text") else str(dn)
+            except Exception:
+                display_names[str(compressor.nodeid)] = str(compressor)
+
+            variables = await list_compressor_variables(client, compressor, INCLUDE_DIAGNOSTICS)
+            logger.info("Subscribing to %d Compressor variables (include_diagnostics=%s)", len(variables), INCLUDE_DIAGNOSTICS)
+
+            for v in variables:
+                try:
+                    dn = await v.read_display_name()
+                    display_names[str(v.nodeid)] = dn.Text if hasattr(dn, "Text") else str(dn)
+                except Exception:
+                    display_names[str(v.nodeid)] = str(v)
+
+            handler = SubHandler(producer, KAFKA_TOPIC, display_names, restart_event)
+            sub = await client.create_subscription(SUBSCRIPTION_PERIOD_MS, handler)
+
+            subscribed = 0
+            for node in variables:
+                try:
+                    await sub.subscribe_data_change(node, queuesize=QUEUE_SIZE)
+                    subscribed += 1
+                except Exception as e:
+                    logger.error("Failed to subscribe %s: %s", node, e)
+            logger.info("Subscribed %d/%d Compressor variables", subscribed, len(variables))
+
+            # Optional: events, with status-change handler
+            try:
+                ev_handler = EventHandler(producer, KAFKA_TOPIC_EVENTS, restart_event)
+                ev_sub = await client.create_subscription(SUBSCRIPTION_PERIOD_MS, ev_handler)
+                await ev_sub.subscribe_events(client.nodes.server)
+                logger.info("Subscribed to Server events")
+            except Exception as e:
+                logger.warning("Event subscription skipped: %s", e)
+
+            # Wait until either a stop signal or a restart is requested
+
+            # Wait until either a stop signal or a restart is requested
+            done = asyncio.Event()
+
+            async def waiter():
+                # Create tasks explicitly; asyncio.wait forbids raw coroutines
+                stop_task = asyncio.create_task(stop_event.wait())
+                restart_task = asyncio.create_task(restart_event.wait())
+                try:
+                    done_set, pending = await asyncio.wait(
+                        {stop_task, restart_task},
+                        return_when=asyncio.FIRST_COMPLETED
+                    )
+                finally:
+                    # Cancel the other task to avoid leaking background waiters
+                    for t in (stop_task, restart_task):
+                        if not t.done():
+                            t.cancel()
+                done.set()
+
+            await waiter()
+    except (ConnectionError, ua.UaError) as e:
+        # Typical for token rollover / secure channel invalid token
+        logger.error(f"OPC UA connection error: {e}. Will restart connector.")
+    except KafkaError as e:
+        logger.error(f"Kafka error: {e}. Will restart connector.")
+    except Exception as e:
+        logger.exception(f"Unhandled error inside run_once: {e}. Will restart connector.")
+    finally:
+        # Clean teardown to avoid stale subscriptions and sockets
+        try:
+            if sub is not None:
+                await sub.delete()
+        except Exception:
+            pass
+        try:
+            if ev_sub is not None:
+                await ev_sub.delete()
+        except Exception:
+            pass
+        try:
+            if client is not None:
+                # asyncua Client is context-managed above; still ensure closed
+                pass
+        except Exception:
+            pass
+        try:
+            if producer is not None:
+                producer.flush(timeout=5)
+                producer.close()
+        except Exception:
+            pass
+        logger.info("Run teardown complete.")
+
+# --- Main restart loop with exponential backoff ---
+async def main():
+    stop_event = asyncio.Event()
+
+    def stop_handler(*_):
+        logger.info("Shutdown signal received. Stopping connector...")
+        stop_event.set()
+
+    loop = asyncio.get_event_loop()
+    for sig in (signal.SIGINT, signal.SIGTERM):
+        try:
+            loop.add_signal_handler(sig, stop_handler)
+        except NotImplementedError:
+            pass
+
+    backoff_sec = 1
+    max_backoff_sec = 30  # cap the backoff
+    attempt = 0
+
+    while not stop_event.is_set():
+        attempt += 1
+        logger.info(f"Connector run attempt #{attempt} starting...")
+        await run_once(stop_event)
+
+        if stop_event.is_set():
+            break
+
+        # If we reached here, run_once exited due to error or restart_event.
+        logger.info(f"Connector will restart. Backoff {backoff_sec}s.")
+        try:
+            await asyncio.wait_for(stop_event.wait(), timeout=backoff_sec)
+        except asyncio.TimeoutError:
+            pass
+
+        backoff_sec = min(max_backoff_sec, backoff_sec * 2)  # exponential backoff
+
+    logger.info("Connector stopped cleanly.")
 
 if __name__ == "__main__":
     try:
@@ -310,4 +459,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("Interrupted by user, shutting down...")
     except Exception as e:
-        logger.exception(f"Unhandled error: {e}")
+        logger.info("User Defined Error")

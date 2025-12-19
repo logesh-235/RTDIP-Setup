@@ -368,6 +368,7 @@ services:
       DELTA_PCDM_EVENTS_STRING: s3a://historian-data/pcdm/events_string
       DELTA_PCDM_EVENTS_INTEGER: s3a://historian-data/pcdm/events_integer
       DELTA_PCDM_EVENTS_FLOAT:   s3a://historian-data/pcdm/events_float
+      DELTA_TABLE_PATH: s3a://rtdip/Utthunga/Site_name  # MUST contain _delta_log/
       #Default TImezone
       DEFAULT_TZ_OFFSET : "+00:00"
     networks:

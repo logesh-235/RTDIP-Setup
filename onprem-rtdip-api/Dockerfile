@@ -2,7 +2,7 @@
 # onprem-rtdip-api/Dockerfile
 FROM python:3.11-slim-bookworm
 
-# Java 17 for Spark 3.5.x + procps (ps)
+# Java 17 for Spark 3.5.x + curl + procps
 RUN apt-get update \
  && apt-get install -y openjdk-17-jre-headless curl procps \
  && rm -rf /var/lib/apt/lists/*
@@ -10,12 +10,12 @@ RUN apt-get update \
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
-# RTDIP SDK + FastAPI + matching PySpark + Delta
+# Python deps: FastAPI + RTDIP SDK + PySpark + Delta (Python-side)
 RUN pip install --no-cache-dir \
     fastapi uvicorn[standard] \
     rtdip-sdk==0.14.1 \
     pyspark==3.5.1 \
-    delta-spark==3.0.0 \
+    delta-spark==3.2.0 \
     packaging \
     grpcio-status \
     grpcio>=1.48.1 \
@@ -24,5 +24,9 @@ RUN pip install --no-cache-dir \
 WORKDIR /app
 COPY app /app
 
+
 EXPOSE 80
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+
+
+# Run the FastAPI app via Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80", "--log-level", "info", "--proxy-headers"]
